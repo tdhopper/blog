@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jrmontag</title><link href="test.com/" rel="alternate"></link><link href="test.com/feeds/all.atom.xml" rel="self"></link><id>test.com/</id><updated>2014-01-01T00:00:00+01:00</updated><entry><title>hello world</title><link href="test.com/hello-world.html" rel="alternate"></link><updated>2014-01-01T00:00:00+01:00</updated><author><name>josh</name></author><id>tag:test.com,2014-01-01:hello-world.html</id><summary type="html">&lt;p&gt;2014 resolutions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Do stuff.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make stuff.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is step 1 of Make stuff.  &lt;/p&gt;</summary><category term="pelican"></category><category term="publishing"></category></entry></feed>
