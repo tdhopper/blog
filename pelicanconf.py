@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'josh'
-SITENAME = u'witty title'
-SITEURL = ''
+AUTHOR = u'Josh Montague'
+SITENAME = u'clever title'
+SITEURL = 'http://joshmontague.com'
+MINI_BIO = u'I move bits around all day. Mostly social data, mostly in Python.'
 
 TIMEZONE = 'US/Mountain'
 
@@ -16,20 +17,23 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),
-          ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),
-        )
+LINKS =  ()
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),
+SOCIAL = (
+            ('Github', 'https://github.com/jrmontag'),
+            ('Twitter', 'https://twitter.com/jrmontag'),
+            ('LinkedIn', 'https://linkedin.com/in/joshuamontague'),
         )
 
 # CNAME
-FILES_TO_COPY = (( 'CNAME', 'CNAME'),
-                )
+#FILES_TO_COPY = (( 'CNAME', 'CNAME'),
+#                )
+# edit to reflect https://github.com/mbrochh/mbrochh-blog/commit/979c74d368aa560efbfeb8125344e6226581484f
+PATH = '/Users/jrm/blog/src/content'
+STATIC_PATHS = [
+    'CNAME',
+                ]
 
 DEFAULT_PAGINATION = 10
 
