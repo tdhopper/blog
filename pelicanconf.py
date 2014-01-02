@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Josh'
-SITENAME = u'jrmontag'
+AUTHOR = u'josh'
+SITENAME = u'witty title'
 SITEURL = ''
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'US/Mountain'
 
 DEFAULT_LANG = u'en'
 
@@ -19,11 +19,17 @@ TRANSLATION_FEED_ATOM = None
 LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('Python.org', 'http://python.org/'),
           ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),)
+          ('You can modify those links in your config file', '#'),
+        )
 
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+          ('Another social link', '#'),
+        )
+
+# CNAME
+FILES_TO_COPY = (( 'CNAME', 'CNAME'),
+                )
 
 DEFAULT_PAGINATION = 10
 
