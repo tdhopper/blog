@@ -6,7 +6,7 @@ Slug: hello-world
 Author: josh 
 Summary: In which we experiment with Pelican. 
 
-2014 resolutions (shamelessly copied from [Brendan Leonard](http://semi-rad.com):
+2014 resolutions (shamelessly copied from [Brendan Leonard](http://semi-rad.com)):
 
 - Do stuff.
 
