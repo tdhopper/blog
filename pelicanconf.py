@@ -9,7 +9,7 @@ MINI_BIO = u'I type into colored screens all day. Mostly about social data, most
 TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
 
-#THEME = 'simple'
+THEME = 'notmyidea'
 
 ARTICLE_URL= 'posts/{date:%Y}/{slug}/'
 ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}/index.html'
@@ -30,6 +30,10 @@ SOCIAL = (
             ('Twitter', 'https://twitter.com/jrmontag'),
             ('LinkedIn', 'https://linkedin.com/in/joshuamontague'),
         )
+
+GOOGLE_ANALYTICS = 'UA-XXXX-YYYY'
+DISQUS_SITENAME = ''
+
 
 # swap out of FILES_TO_COPY, re:
 # https://github.com/getpelican/pelican/blob/master/docs/settings.rst#path-metadata 
