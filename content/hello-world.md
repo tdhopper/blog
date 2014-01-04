@@ -6,10 +6,10 @@ Slug: hello-world
 Author: josh 
 Summary: In which we experiment with Pelican. 
 
-2014 resolutions (shamelessly copied from [Brendan Leonard](http://semi-rad.com)):
+My 2014 resolutions are completely and shamelessly copied from [Brendan Leonard](http://semi-rad.com/2013/12/do-things-and-make-things-next-year):
 
-- Do stuff.
+- Do things.
 
-- Make stuff.
+- Make things.
 
-This is step 1 of Make stuff.  
+This is step 1 of Make Things. More to come. 
