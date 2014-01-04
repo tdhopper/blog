@@ -5,11 +5,16 @@ from __future__ import unicode_literals
 AUTHOR = u'Josh Montague'
 SITENAME = u'clever title'
 SITEURL = 'http://joshmontague.com'
-MINI_BIO = u'I move bits around all day. Mostly social data, mostly in Python.'
-
+MINI_BIO = u'I type into colored screens all day. Mostly about social data, mostly in Python.'
 TIMEZONE = 'US/Mountain'
-
 DEFAULT_LANG = u'en'
+
+#THEME = 'simple'
+
+ARTICLE_URL= 'posts/{date:%Y}/{slug}/'
+ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}/index.html'
+
+YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -26,10 +31,8 @@ SOCIAL = (
             ('LinkedIn', 'https://linkedin.com/in/joshuamontague'),
         )
 
-# CNAME
-#FILES_TO_COPY = (( 'CNAME', 'CNAME'),
-#                )
-# edit to reflect https://github.com/mbrochh/mbrochh-blog/commit/979c74d368aa560efbfeb8125344e6226581484f
+# swap out of FILES_TO_COPY, re:
+# https://github.com/getpelican/pelican/blob/master/docs/settings.rst#path-metadata 
 PATH = '/Users/jrm/blog/src/content'
 STATIC_PATHS = [
     'CNAME',
