@@ -1,0 +1,4 @@
+Pelican=3.2
+Markdown=2.3
+ghp-import=0.3
+
