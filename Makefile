@@ -120,6 +120,8 @@ ifdef NAME
 	echo "Title: $(NAME)" >  $(INPUTDIR)/$(SLUG).$(EXT)
 	echo "Slug: $(SLUG)" >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo "Date: $(DATE)" >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "Tags: " 		 >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "Summary: "	 >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
 	${EDITOR} ${INPUTDIR}/${SLUG}.${EXT} &
