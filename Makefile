@@ -14,6 +14,9 @@ SSH_PORT=22
 SSH_USER=root
 SSH_TARGET_DIR=/var/www
 
+DROPBOX_PUB_DIR=~/Dropbox/Public/
+# draft post storage
+DROPBOX_PVT_DIR=~/Dropbox/draft/
 
 #DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
 DATE := $(shell date +'%Y-%m-%d')
@@ -28,7 +31,6 @@ TIME := $(shell date +'%H:%M:%S')
 #CLOUDFILES_USERNAME=my_rackspace_username
 #CLOUDFILES_API_KEY=my_rackspace_api_key
 #CLOUDFILES_CONTAINER=my_cloudfiles_container
-#DROPBOX_DIR=~/Dropbox/Public/
 #######
 
 DEBUG ?= 0
@@ -54,6 +56,11 @@ help:
 	@echo '   make s3_upload                   upload the web site via S3         '
 	@echo '   make cf_upload                   upload the web site via Cloud Files'
 	@echo '   make github                      upload the web site via gh-pages   '
+	@echo '   make newpost                     generate template .md for a new    '
+	@echo '                                        post with the given name       '
+	@echo '   make newpage                     generate template .md for a new    '
+	@echo '                                        page with the given name       '
+	@echo '   make savedraft                   copy named post into Dropbox       '
 	@echo '                                                                       '
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html'
 	@echo '                                                                       '
@@ -96,7 +103,7 @@ rsync_upload: publish
 	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --delete $(OUTPUTDIR)/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) --cvs-exclude
 
 dropbox_upload: publish
-	cp -r $(OUTPUTDIR)/* $(DROPBOX_DIR)
+	cp -r $(OUTPUTDIR)/* $(DROPBOX_PUB_DIR)
 
 ftp_upload: publish
 	lftp ftp://$(FTP_USER)@$(FTP_HOST) -e "mirror -R $(OUTPUTDIR) $(FTP_TARGET_DIR) ; quit"
@@ -142,5 +149,13 @@ else
 	@echo 'Do make newpage NAME='"'"'Page Name'"'"
 endif
 
+savedraft:
+ifdef FILE 
+	cp -r $(INPUTDIR)/$(FILE) $(DROPBOX_PVT_DIR)
+else
+	@echo 'Variable FILE is not defined.'
+	@echo 'Do make savedraft FILE='"'"'Draft filename'"'"
+endif
 
-.PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github newpost newpage
+
+.PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github newpost newpage savedraft
