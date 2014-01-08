@@ -7,13 +7,13 @@ Summary: Use a GitHub project repository to host the static HTML and CSS for sim
 
 For quick, get-up-and-running web publishing, there is [obviously](http://tumblr.com) [no](http://wordpress.com) [shortage](http://blogger.com) [of](http://medium.com) [platforms](http://ghost.org) [out](http://subtle.com) [there](http://typepad.com) to use; most have a free, hosted version, too (I'm sure there are a million other options I've never heard of). I've certainly started and neglected my share of these platforms (or had them disappear ... RIP [posterous](http://posterous.com)). 
 
-In my latest endeavor to share things -- driven by excitement about my new work universe -- I was looking for a combination of things: balance between "get your hands dirty" and "don't get hung up on too many details", balance between "keep it lightweight" and "give me some features", and balance between "let me learn something new" and "keep it relevant". 
+I've been excited about learning new things at my new job and I was looking for an outlet for sharing (beyond the [140-character tidbits](http://twitter.com/jrmontag)). I was looking for a combination of things: balance between "get your hands dirty" and "don't get hung up on too many details", balance between "keep it lightweight" and "give me some features", and balance between "let me learn something new" and "keep it relevant". 
 
-Ultimately, my love for Python won out (over e.g. [Jekyll](http://jekyllrb.com/)) and I went for a Pelican-based solution hosted by GitHub Pages. From this combination of things I get:
+Ultimately, my love for Python won out and I went for a Pelican-based solution hosted by GitHub Pages. From this combination of things I get:
 
 - Python (the language with which I'm most familiar and love to use)
 
-- Pelican (lightweight, static, CLI tools for compiling and publishing, compose in Markdown) 
+- Pelican (lightweight, fast, CLI tools for compiling and publishing, compose in Markdown) 
 
 - git / GitHub (sweet sweet version control, plus 'open-source-y' website code)
 
@@ -34,18 +34,27 @@ Let's install some packages. I'm using [`virtualenv`](https://pypi.python.org/py
     # optionally export the environment vars used in the shell script 
     . /usr/local/bin/virtualenvwrapper.sh
 
-(Aside: As a result of this project, I'm starting to finally **get** `virtualenv`, and I suspect that `pip` (via e.g. `easy_install`), `virtualenv`, and `virtualenvwrapper` are among a small number of python packages that should ever be `sudo` installed.) 
+(Aside: through the process of setting up this project, I'm starting to finally **get** `virtualenv`, and I suspect that `pip` (via e.g. `easy_install`), `virtualenv`, and `virtualenvwrapper` are among a small number of python packages that should ever be `sudo` installed.) 
 
 Create a new virtualenv (named 'blogging', for example) with a path to your interpreter (e.g. the result of `which python` or whichever installation you'd like to use), and `pip install` the relevant packages into that virtualenv (feel free to steal my [requirements.txt](https://github.com/jrmontag/jrmontag-blog/blob/master/requirements.txt) or fork the [whole repo](https://github.com/jrmontag/jrmontag-blog)). These packages will also install a bunch of others as dependencies.
 
     :::bash
     mkvirtualenv -p /path/to/.../python2.7 blogging     # for example
     pip install -r /path/to/.../requirements.txt
-    lssitepackages  # optionally, check the currently-installed packages
-    
+    # optionally check the currently-installed packages -- a handy cmd to know
+    #   (this is like 'pip freeze' for this virtualenv) 
+    lssitepackages  
+
+A couple of other `virtualenvwrapper` commands that you'll want to know: 
+
+    :::bash
+    workon              # list the existing virtualenvs (also visible at ~/.virtualenv) 
+    workon your_venv    # enter the your_venv virtualenv (prompt will change) 
+    deactivate          # exit current virtualenv, return to system environment 
+
 # Local project setup
 
-This part is pretty subjective. Ultimately, we're going to have a git repository involved, but I'm actually keeping it above the root of my project tree for now. I have a `blog` root directory and am planning to keep e.g. icon and theme directories in there, too. 
+This part is pretty subjective. Ultimately, we're going to have a git repository involved, but I'm actually keeping it above the root of my project tree for now. I have a `blog` directory at the outer-most level and am planning to keep e.g. icon and theme directories in there, too. We'll put the git repository in a `src` directory: 
 
     :::bash
     mkdir -p ~/blog/src
