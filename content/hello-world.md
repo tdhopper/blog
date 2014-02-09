@@ -2,7 +2,7 @@ Title: hello world
 Date: 2014-01-01  
 Tags: pelican 
 Slug: hello-world 
-Author: josh 
+Author: Josh Montague 
 Summary: In which we experiment with Pelican. 
 
 My 2014 resolutions are completely and shamelessly copied from slash inspired by [Brendan Leonard](http://semi-rad.com/2013/12/do-things-and-make-things-next-year):
