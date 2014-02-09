@@ -40,6 +40,7 @@ DISQUS_SITENAME = ''
 PATH = '/Users/jrm/blog/src/content'
 STATIC_PATHS = [
     'CNAME',
+    'favicon.ico',
                 ]
 
 DEFAULT_PAGINATION = 10
