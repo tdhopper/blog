@@ -1,6 +1,6 @@
 Title: hello world 
 Date: 2014-01-01  
-Category: Python
+Category: 
 Tags: pelican 
 Slug: hello-world 
 Author: josh 
