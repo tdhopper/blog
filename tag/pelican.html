@@ -18,13 +18,144 @@
         <header id="banner" class="body">
                 <h1><a href="http://joshmontague.com/">clever title </a></h1>
                 <nav><ul>
+                    <li><a href="http://joshmontague.com/category/misc.html">misc</a></li>
                     <li><a href="http://joshmontague.com/category/python.html">Python</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://joshmontague.com/posts/2014/hello-world/">hello world</a></h1>
+                    <h1 class="entry-title"><a href="http://joshmontague.com/posts/2014/pelican-on-github/">Weekend Project: Build a Pelican-powered site on GitHub Pages</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-01-15T00:00:00">
+                Wed 15 January 2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://joshmontague.com/author/josh-montague.html">Josh Montague</a>
+        </address>
+<p>In <a href="http://joshmontague.com/category/misc.html">misc</a>. </p>
+<p>tags: <a href="http://joshmontague.com/tag/python.html">python</a><a href="http://joshmontague.com/tag/pelican.html">pelican</a><a href="http://joshmontague.com/tag/git.html">git</a><a href="http://joshmontague.com/tag/weekend.html">weekend</a></p>
+</footer><!-- /.post-info --><blockquote>
+<p>Disclaimer: 
+This post got pretty long, especially for the first real post on this site. But by boiling down my very non-linear experience and putting this in writing, I hope that you could read through this and make it all work in an hour or so. Let me know how close that is to reality. </p>
+</blockquote>
+<p>For quick, get-up-and-running web publishing, there is <a href="http://tumblr.com">obviously</a> <a href="http://wordpress.com">no</a> <a href="http://blogger.com">shortage</a> <a href="http://medium.com">of</a> <a href="http://ghost.org">platforms</a> <a href="http://subtle.com">out</a> <a href="http://typepad.com">there</a> to use; most have a free, hosted version, too (I'm sure there are a million other options I've never heard of). I've certainly started and neglected my share of these platforms (or had them disappear ... RIP <a href="http://posterous.com">posterous</a>). </p>
+<p>But, I've been super excited learning things my new career* and I was looking for an outlet for sharing (beyond the <a href="http://twitter.com/jrmontag">140-character vignettes</a>). I was looking for a combination of things: balance between "get your hands dirty" and "don't get hung up on too many details", balance between "keep it lightweight" and "give me some features", and balance between "let me learn something new" and "keep it relevant". </p>
+<p>Ultimately, my love for Python won out and I went for a static <a href="https://pelican.readthedocs.org/">Pelican</a>-based solution hosted via <a href="http://pages.github.com/">GitHub Pages</a>. From this combination of things I get:</p>
+<ul>
+<li>
+<p>Python (the language with which I'm most familiar and love to use)</p>
+</li>
+<li>
+<p>Pelican (lightweight, fast, CLI tools for compiling and publishing, compose in Markdown) </p>
+</li>
+<li>
+<p>git / GitHub (sweet sweet version control, plus open-source-y website)</p>
+</li>
+</ul>
+<p>While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of <a href="http://joshmontague.com/tag/weekend.html">Weekend Project</a> is just about getting the pieces up and running - better understanding will hopefully come down the road.</p>
+<p>*Another good topic to write about in the future. </p>
+<hr />
+<p>I kicked this project off by reading two great posts by Martin Brochhaus (<a href="http://martinbrochhaus.com/pelican2.html">newer</a>, <a href="http://martinbrochhaus.com/pelican.html">older</a>), but had to supplement those with various official docs along the way when I was in unfamiliar territory (which was approximately all of the time). I think I also had to add in a few tweaks for things that have changed since those posts were written. You could get most of this by just reading his posts (and I recommend clicking through), but I wanted the experience of writing it out. I've tried to include the most relevant extra links inline below where they were helpful to me - let me know if I missed something super useful.</p>
+<h1>Local Python setup</h1>
+<p>Let's install some packages. I'm using <a href="https://pypi.python.org/pypi/virtualenv"><code>virtualenv</code></a> to choose a specific Python interpreter and maintain an isolated set of packages relevant to this project. I'm also using <a href="http://virtualenvwrapper.readthedocs.org/en/latest/"><code>virtualenvwrapper</code></a> which is a wrapper for <code>virtualenv</code> that simplifies the API and makes it a little more friendly to use. Source <code>virtualenvwrapper.sh</code> and let it set things up with defaults (if you want to override the defaults, open the script and see what environment variables to set before you source the file). </p>
+<div class="highlight"><pre>sudo pip install virtualenv
+sudo pip install virtualenvwrapper
+<span class="c"># optionally export the correct environment vars used in the shell script </span>
+<span class="c">#   (if you want to override the defaults)</span>
+. /usr/local/bin/virtualenvwrapper.sh
+</pre></div>
+
+
+<p>(Aside: through the process of setting up this project, I'm starting to finally grok <code>virtualenv</code>, and I suspect that <code>pip</code> (via e.g. <code>easy_install</code>), <code>virtualenv</code>, and <code>virtualenvwrapper</code> are among a small number of python packages that should ever be <code>sudo</code> installed, system-wide.) </p>
+<p>Create a new virtualenv (named 'blogging', for example) with a path to your interpreter (e.g. the result of <code>which python</code> or whichever installation you'd like to use), and <code>pip install</code> the relevant packages into that virtualenv (feel free to steal my <a href="https://github.com/jrmontag/jrmontag-blog/blob/master/requirements.txt">requirements.txt</a> and run <code>pip install -r requirements.txt</code>). These packages will also install a bunch of others as dependencies.</p>
+<div class="highlight"><pre>mkvirtualenv -p /path/to/.../python2.7 blogging     <span class="c"># for example</span>
+pip install -r /path/to/.../requirements.txt
+<span class="c"># optionally check the currently-installed packages -- a handy cmd to know</span>
+<span class="c">#   (this is like &#39;pip freeze&#39; for the active virtualenv) </span>
+lssitepackages
+</pre></div>
+
+
+<p>At the time of writing, I'm using Python 2.7.6 for this environment. A couple of other <code>virtualenvwrapper</code> commands that you'll want to know: </p>
+<div class="highlight"><pre>workon              <span class="c"># list the existing virtualenvs (also visible at ~/.virtualenv) </span>
+workon your_env     <span class="c"># enter the your_env virtualenv (prompt will change) </span>
+deactivate          <span class="c"># exit current virtualenv, return to system environment</span>
+</pre></div>
+
+
+<h1>Local project setup</h1>
+<p>This part is pretty subjective. Ultimately, we're going to have a git repository involved, but I'm actually keeping it above the root of my project tree for now. I have a <code>blog</code> directory at the bottom level and am planning to keep e.g. icon and theme directories in there, too. Soon, we'll create a git repository in the <code>src</code> directory to hold our content. First, use the handy Pelican <a href="https://pelican.readthedocs.org/en/3.2/getting_started.html#kickstart-your-site">quickstart</a> command to set up the rest of the project structure:</p>
+<div class="highlight"><pre>mkdir -p ~/blog/src
+<span class="nb">cd</span> ~/blog/src
+workon blogging     <span class="c"># or whatever you named your env (and if you aren&#39;t already in it)</span>
+pelican-quickstart
+</pre></div>
+
+
+<p>Don't worry too much about the questions - I just hit enter for all of them to use the default settings. While still in the <code>src</code> directory, initialize a new git repository (<code>git init</code>) and create a <code>.gitignore</code> file with the lines below. We're excluding the compiled, swap, and output (mostly html and CSS) files. The content of <code>output/</code> will end up in our <code>gh-pages</code> branch (more on this shortly). </p>
+<div class="highlight"><pre><span class="c"># add these to your .gitignore</span>
+*.pyc
+*.swp
+*.pid       <span class="c"># this gets created by the develop_server.sh script</span>
+output/
+</pre></div>
+
+
+<p>Let's sync the repo before we move on. Create a new project repository on GitHub, and skip the "Initialize this repository with a README" part. Grab the ssh address and bring it over to your new local repo. Set the upstream remote / master and add all your new content: </p>
+<div class="highlight"><pre><span class="c"># assuming you&#39;ve created the new-repo repository on github</span>
+git add -A
+git commit -m<span class="s2">&quot;initial commit&quot;</span> 
+git remote add origin new-repo_ssh-address
+git push -u origin master
+</pre></div>
+
+
+<p>If that went well, you can cruise over the repo on GitHub and make sure all your files are there (and hopefully no <code>output/</code> directory because we included it in the <code>.gitignore</code>).  </p>
+<p>Time to write your first post. Our articles are going in the <code>src/content/</code> directory. Pelican supports both <a href="http://docs.getpelican.com/en/3.3.0/getting_started.html#file-metadata">reStructuredText and Markdown</a>. The article syntax is different for the two filetypes, so when you pick one, check that link for the proper headings. If you want to just get started using Markdown, then create a simple new file like the one below.</p>
+<div class="highlight"><pre><span class="c"># create a file called hello-world.md in src/content/ </span>
+<span class="c">#   with something like the text below... </span>
+Tite: Hello World!
+Date: 2014-01-01
+Tags: pelican
+Slug: hello-world
+Author: Clark Kent
+Summary: In which the author writes their first blog post.
+
+We<span class="err">&#39;</span>re blogging with Pelican!
+</pre></div>
+
+
+<p>Now that you have some content, time to let Pelican do it's thing. The <code>pelican-quickstart</code> process should have created a Makefile in your <code>src</code> directory with some helpful commands for blog development. One of those is labeled <code>devserver</code> and it lets you view the current state of your <code>content</code> directory, locally at port 8000. You can look through what <code>make devserver</code> does (it calls the <code>develop_server.sh</code> shell script, which in turn calls on Pelican...) or just use it for now and understand it later. </p>
+<p>If all went as planned, you should be able to point a browser to <code>http://localhost:8000/</code> and see your new blog, live and kicking. Well, live in the only-exists-on-your-machine-while-devserver-is-running kind of way. But it's a start. For now, kill the local devserver process (cntl-C, followed by <code>./develop_server.sh stop</code> because cntl-C seemingly doesn't fully kill the process), and let's put this content somewhere where others can see it. </p>
+<h1>GitHub Pages setup</h1>
+<p>GitHub is amazingly powerful for a host of reasons. One of those is the ability to set up a low-... actually a basically zero-overhead website to display your projects via <a href="http://pages.github.com/">GitHub Pages</a>. A couple of stellar examples are the docs for <a href="http://jekyllrb.com/">Jekyll</a> - a static website generator similar to Pelican but in Ruby - and Cam Davidson-Pilon's <a href="http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">Probabilistic Programming book</a>. These are also great examples of having your content served through a custom domain (Jekyll) or from the default GitHub address of your project (Probabilistic...). [Tangent: I'm working through Davidson-Pilon's book right now and I highly recommend it if you're into that sort of thing.] </p>
+<p>For now, we'll use the latter and return to talk about custom domain names another time. To serve static content from a GitHub repo, you need a <code>gh-pages</code> branch as part of your project repo. If you're a git wizard and are already adept at managing branches, this may seem anticlimactic but we can use a <a href="https://github.com/davisp/ghp-import">really handy script</a> that manages the <code>gh-pages</code> branch for us. To quote the docs:</p>
+<blockquote>
+<p>This saves me from even having to think about the branch and everything becomes magical.</p>
+<p>This is what <code>ghp-import</code> was written for.</p>
+</blockquote>
+<p>If you used the <code>requirements.txt</code> file from my project when setting up your virtualenv, you should already have <code>ghp-import</code> installed (but recall that you can also check with <code>lssitepackages</code>). The <code>pelican-quickstart</code> command should have also added a <code>make github</code> portion to the Makefile. The pieces are falling into place like magic. The final step:</p>
+<div class="highlight"><pre>make github
+</pre></div>
+
+
+<p>That's it. That make command actually does quite a lot, so definitely dig through the sequence of events there, but not right now. Right now, you should do two things: first, check that your repo has a new branch called <code>gh-pages</code> and then check that you can go to <code>https://your-user-name.github.io/new-repo-name</code>. (I'll totally understand if you do the second part first.) </p>
+<p>With luck (and minimal misleading mistakes on my part), you are well on your way. I've got a few other helpful upgrades to the base setup and will try to share any other future upgrades that might be helpful, too. Until then, happy blogging with your new GitHub Pages-hosted Pelican site. </p><p>There are <a href="http://joshmontague.com/posts/2014/pelican-on-github/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://joshmontague.com/posts/2014/hello-world/" rel="bookmark"
+                           title="Permalink to hello world">hello world</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-01-01T00:00:00">
                 Wed 01 January 2014
@@ -34,22 +165,15 @@
                 By <a class="url fn" href="http://joshmontague.com/author/josh.html">josh</a>
         </address>
 <p>In <a href="http://joshmontague.com/category/python.html">Python</a>. </p>
-<p>tags: <a href="http://joshmontague.com/tag/pelican.html">pelican</a><a href="http://joshmontague.com/tag/publishing.html">publishing</a></p>
-</footer><!-- /.post-info --><p>My 2014 resolutions are completely and shamelessly copied from <a href="http://semi-rad.com/2013/12/do-things-and-make-things-next-year">Brendan Leonard</a>:</p>
-<ul>
-<li>
-<p>Do things.</p>
-</li>
-<li>
-<p>Make things.</p>
-</li>
-</ul>
-<p>This is step 1 of Make Things. More to come. </p><p>There are <a href="http://joshmontague.com/posts/2014/hello-world/#disqus_thread">comments</a>.</p>                </article>
+<p>tags: <a href="http://joshmontague.com/tag/pelican.html">pelican</a></p>
+</footer><!-- /.post-info -->                <p>In which we experiment with Pelican.</p>
+                <a class="readmore" href="http://joshmontague.com/posts/2014/hello-world/">read more</a>
+<p>There are <a href="http://joshmontague.com/posts/2014/hello-world/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
+            </ol><!-- /#posts-list -->
 <p class="paginator">
     Page 1 / 1
 </p>
-            </aside><!-- /#featured -->
-            </ol><!-- /#posts-list -->
             </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="social">
