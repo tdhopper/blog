@@ -16,7 +16,7 @@ SSH_TARGET_DIR=/var/www
 
 DROPBOX_PUB_DIR=~/Dropbox/Public/
 # draft post storage
-DROPBOX_PVT_DIR=~/Dropbox/draft/
+DROPBOX_PVT_DIR=~/Dropbox/blog/draft/
 
 #DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
 DATE := $(shell date +'%Y-%m-%d')
