@@ -1,6 +1,5 @@
 Title: hello world 
 Date: 2014-01-01  
-Category: 
 Tags: pelican 
 Slug: hello-world 
 Author: josh 
