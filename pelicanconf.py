@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Josh Montague'
 SITENAME = u'lab notebook'
 SITEURL = 'http://joshmontague.com'
+SITEURL = 'http://jrmontag.github.io/blog/'
 MINI_BIO = u'I type into colored screens all day. Mostly about social data, often in Python.'
 TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
@@ -30,7 +31,7 @@ COVER_IMG_URL = 'http://farm4.staticflickr.com/3805/8797136352_0e5474ee28.jpg'
 PROFILE_IMAGE_URL = 'http://2.gravatar.com/avatar/357be3e0935e653ba5cdae493f3dfcaf'
 TAGLINE = 'thoughts on data'
 
-# social widget
+# social widgets (theme-specific)
 if THEME == 'notmyidea':
     SOCIAL = ( 
             ('Github', 'https://github.com/jrmontag')
@@ -42,6 +43,7 @@ elif THEME == 'pure-single':
             ('github', 'https://github.com/jrmontag')
             , ('twitter-square', 'https://twitter.com/jrmontag')
             , ('linkedin', 'https://linkedin.com/in/joshuamontague')
+            , ('rss', '/feeds/all.rss.xml')
         )
 else:
     SOCIAL = (
@@ -54,13 +56,21 @@ else:
 #        ('extra/CNAME', 'CNAME')
 #        , ('extra/favicon.ico', 'favicon.ico')
 #    )
+
 PATH = '/Users/jrm/blog/src/content'
-STATIC_PATHS = [
-        'images'
-        , 'extra/CNAME'
-        , 'extra/favicon.ico'
-        , 'extra/404.html'
-    ]
+
+STATIC_PATHS = [ 'extra', 'images' ]
+#        'extra/CNAME'
+#        , 'extra/favicon.ico'
+#        , 'extra/404.html'
+#        , 'images'          # 'image' is copied by default, but i like being explicit
+#    ]
+
+EXTRA_PATH_METADATA = {
+    'extra/CNAME': {'path': 'CNAME'} 
+    , 'extra/favicon.ico': {'path': 'favicon.ico'} 
+    , 'extra/404.html': {'path': '404.html'} 
+    }
 
 # keep pelican from freaking out over pre-formed html 
 READERS = {"html": None}
