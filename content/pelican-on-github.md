@@ -2,7 +2,7 @@ Title: Weekend Project: Build a Pelican-powered site on GitHub Pages
 Slug: pelican-on-github
 Date: 2014-01-15 
 Tags: python, pelican, git, weekend
-Summary: Learn how to use a GitHub project repository to host and serve the static content for a simple blog site written in Markdown, compiled and configured in Python. 
+Summary: A how-to on using a GitHub project repository to host and serve the static content for a simple blog site written in Markdown, compiled and configured in Python. 
 
 > Disclaimer: 
 > This post got pretty long, especially for the first real post on this site. But by boiling down my very non-linear experience and putting this in writing, I hope that you could read through this and make it all work in an hour or so. Let me know how close that is to reality. 
@@ -19,7 +19,7 @@ Ultimately, my love for Python won out and I went for a static [Pelican](https:/
 
 - git / GitHub (sweet sweet version control, plus open-source-y website)
 
-While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of [Weekend Project](http://joshmontague.com/tag/weekend.html) is just about getting the pieces up and running - better understanding will hopefully come down the road.
+While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of [Weekend Project](http://jrmontag.github.io/blog/tag/weekend.html) is just about getting the pieces up and running - better understanding will hopefully come down the road.
 
 \*Another good topic to write about in the future. 
 
@@ -41,7 +41,7 @@ Let's install some packages. I'm using [`virtualenv`](https://pypi.python.org/py
 
 (Aside: through the process of setting up this project, I'm starting to finally grok `virtualenv`, and I suspect that `pip` (via e.g. `easy_install`), `virtualenv`, and `virtualenvwrapper` are among a small number of python packages that should ever be `sudo` installed, system-wide.) 
 
-Create a new virtualenv (named 'blogging', for example) with a path to your interpreter (e.g. the result of `which python` or whichever installation you'd like to use), and `pip install` the relevant packages into that virtualenv (feel free to steal my [requirements.txt](https://github.com/jrmontag/jrmontag-blog/blob/master/requirements.txt) and run `pip install -r requirements.txt`). These packages will also install a bunch of others as dependencies.
+Create a new virtualenv (named 'blogging', for example) with a path to your interpreter (e.g. the result of `which python` or whichever installation you'd like to use), and `pip install` the relevant packages into that virtualenv (feel free to steal my [requirements.txt](https://github.com/jrmontag/blog/blob/master/requirements.txt) and run `pip install -r requirements.txt`). These packages will also install a bunch of others as dependencies.
 
     :::bash
     mkvirtualenv -p /path/to/.../python2.7 blogging     # for example

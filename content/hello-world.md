@@ -5,7 +5,7 @@ Slug: hello-world
 Author: Josh Montague 
 Summary: In which we experiment with Pelican. 
 
-My 2014 resolutions are completely and shamelessly copied from slash inspired by [Brendan Leonard](http://semi-rad.com/2013/12/do-things-and-make-things-next-year):
+My 2014 resolutions are completely and shamelessly copied from slash inspired by my friend [Brendan Leonard](http://semi-rad.com/2013/12/do-things-and-make-things-next-year):
 
 - Do things.
 

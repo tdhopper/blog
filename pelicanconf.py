@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Josh Montague'
 SITENAME = u'lab notebook'
-SITEURL = 'http://joshmontague.com'
-SITEURL = 'http://jrmontag.github.io/blog/'
+#SITEURL = 'http://joshmontague.com'
+SITEURL = 'http://jrmontag.github.io/blog'
 MINI_BIO = u'I type into colored screens all day. Mostly about social data, often in Python.'
 TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
@@ -60,11 +60,6 @@ else:
 PATH = '/Users/jrm/blog/src/content'
 
 STATIC_PATHS = [ 'extra', 'images' ]
-#        'extra/CNAME'
-#        , 'extra/favicon.ico'
-#        , 'extra/404.html'
-#        , 'images'          # 'image' is copied by default, but i like being explicit
-#    ]
 
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'} 
