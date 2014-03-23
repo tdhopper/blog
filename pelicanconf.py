@@ -26,7 +26,7 @@ TRANSLATION_FEED_ATOM = None
 LINKS =  ()
 
 # from pure readme
-COVER_IMG_URL = 'http://www.flickr.com/photos/jmontague/8797136352/'
+COVER_IMG_URL = 'http://farm4.staticflickr.com/3805/8797136352_0e5474ee28.jpg'
 PROFILE_IMAGE_URL = 'http://2.gravatar.com/avatar/357be3e0935e653ba5cdae493f3dfcaf'
 TAGLINE = 'thoughts on data'
 
