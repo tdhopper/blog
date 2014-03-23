@@ -20,6 +20,5 @@ DELETE_OUTPUT_DIRECTORY = True
 
 # Following items are often useful when publishing
 DISQUS_SITENAME = 'joshmontaguecom'
-#GOOGLE_ANALYTICS = 'UA-XXXX-YYYY'
 GOOGLE_ANALYTICS = 'UA-46808845-1'
 GITHUB_URL = 'https://github.com/jrmontag'
