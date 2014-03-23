@@ -56,7 +56,8 @@ else:
 #    )
 PATH = '/Users/jrm/blog/src/content'
 STATIC_PATHS = [
-        'extra/CNAME'
+        'images'
+        , 'extra/CNAME'
         , 'extra/favicon.ico'
         , 'extra/404.html'
     ]
