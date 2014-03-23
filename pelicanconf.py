@@ -58,8 +58,11 @@ PATH = '/Users/jrm/blog/src/content'
 STATIC_PATHS = [
         'extra/CNAME'
         , 'extra/favicon.ico'
+        , 'extra/404.html'
     ]
 
+# keep pelican from freaking out over pre-formed html 
+READERS = {"html": None}
 
 DEFAULT_PAGINATION = 10
 
