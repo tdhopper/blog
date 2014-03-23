@@ -82,7 +82,7 @@ This post got pretty long, especially for the first real post on this site. But 
 <p>git / GitHub (sweet sweet version control, plus open-source-y website)</p>
 </li>
 </ul>
-<p>While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of <a href="http://joshmontague.com/tag/weekend.html">Weekend Project</a> is just about getting the pieces up and running - better understanding will hopefully come down the road.</p>
+<p>While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of <a href="http://jrmontag.github.io/blog/tag/weekend.html">Weekend Project</a> is just about getting the pieces up and running - better understanding will hopefully come down the road.</p>
 <p>*Another good topic to write about in the future. </p>
 <hr />
 <p>I kicked this project off by reading two great posts by Martin Brochhaus (<a href="http://martinbrochhaus.com/pelican2.html">newer</a>, <a href="http://martinbrochhaus.com/pelican.html">older</a>), but had to supplement those with various official docs along the way when I was in unfamiliar territory (which was approximately all of the time). I think I also had to add in a few tweaks for things that have changed since those posts were written. You could get most of this by just reading his posts (and I recommend clicking through), but I wanted the experience of writing it out. I've tried to include the most relevant extra links inline below where they were helpful to me - let me know if I missed something super useful.</p>
@@ -97,7 +97,7 @@ sudo pip install virtualenvwrapper
 
 
 <p>(Aside: through the process of setting up this project, I'm starting to finally grok <code>virtualenv</code>, and I suspect that <code>pip</code> (via e.g. <code>easy_install</code>), <code>virtualenv</code>, and <code>virtualenvwrapper</code> are among a small number of python packages that should ever be <code>sudo</code> installed, system-wide.) </p>
-<p>Create a new virtualenv (named 'blogging', for example) with a path to your interpreter (e.g. the result of <code>which python</code> or whichever installation you'd like to use), and <code>pip install</code> the relevant packages into that virtualenv (feel free to steal my <a href="https://github.com/jrmontag/jrmontag-blog/blob/master/requirements.txt">requirements.txt</a> and run <code>pip install -r requirements.txt</code>). These packages will also install a bunch of others as dependencies.</p>
+<p>Create a new virtualenv (named 'blogging', for example) with a path to your interpreter (e.g. the result of <code>which python</code> or whichever installation you'd like to use), and <code>pip install</code> the relevant packages into that virtualenv (feel free to steal my <a href="https://github.com/jrmontag/blog/blob/master/requirements.txt">requirements.txt</a> and run <code>pip install -r requirements.txt</code>). These packages will also install a bunch of others as dependencies.</p>
 <div class="highlight"><pre>mkvirtualenv -p /path/to/.../python2.7 blogging     <span class="c"># for example</span>
 pip install -r /path/to/.../requirements.txt
 <span class="c"># optionally check the currently-installed packages -- a handy cmd to know</span>
