@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Josh Montague'
 SITENAME = u'lab notebook'
-#SITEURL = 'http://joshmontague.com'
-SITEURL = 'http://jrmontag.github.io/blog'
+SITEURL = 'http://joshmontague.com'
+#SITEURL = 'http://jrmontag.github.io/blog'
 MINI_BIO = u'I type into colored screens all day. Mostly about social data, often in Python.'
 TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
@@ -27,7 +27,7 @@ TRANSLATION_FEED_ATOM = None
 LINKS =  ()
 
 # from pure readme
-COVER_IMG_URL = 'http://farm4.staticflickr.com/3805/8797136352_0e5474ee28.jpg'
+COVER_IMG_URL = 'https://db.tt/EZ8f7qwr'
 PROFILE_IMAGE_URL = 'http://2.gravatar.com/avatar/357be3e0935e653ba5cdae493f3dfcaf'
 TAGLINE = 'thoughts on data'
 
@@ -61,6 +61,7 @@ PATH = '/Users/jrm/blog/src/content'
 
 STATIC_PATHS = [ 'extra', 'images' ]
 
+# specify the desired output location of some files in the 'extra' dev dir
 EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'} 
     , 'extra/favicon.ico': {'path': 'favicon.ico'} 
