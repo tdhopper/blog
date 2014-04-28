@@ -19,7 +19,7 @@ Ultimately, my love for Python won out and I went for a static [Pelican](https:/
 
 - git / GitHub (sweet sweet version control, plus open-source-y website)
 
-While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of [Weekend Project](http://jrmontag.github.io/blog/tag/weekend.html) is just about getting the pieces up and running - better understanding will hopefully come down the road.
+While I'm still kicking the tires and figuring things out (I haven't even figured out how to change the theme yet), so far it's been fun to explore. There are some components that are still new to me, so I'm learning as I go. This edition of [Weekend Project](http://joshmontague.com/tag/weekend.html) is just about getting the pieces up and running - better understanding will hopefully come down the road.
 
 \*Another good topic to write about in the future. 
 
