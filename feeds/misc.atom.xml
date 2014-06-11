@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>lab notebook</title><link href="http://joshmontague.com/" rel="alternate"></link><link href="http://joshmontague.com/feeds/misc.atom.xml" rel="self"></link><id>http://joshmontague.com/</id><updated>2014-06-09T00:00:00-06:00</updated><entry><title>Vignette: Create a Text File of U.S. State Names</title><link href="http://joshmontague.com/posts/2014/state-names/" rel="alternate"></link><updated>2014-06-09T00:00:00-06:00</updated><author><name>Josh Montague</name></author><id>tag:joshmontague.com,2014-06-09:posts/2014/state-names/</id><summary type="html">&lt;p&gt;While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, &lt;code&gt;wget&lt;/code&gt; or &lt;code&gt;curl&lt;/code&gt; as needed, slice up the html, and be done."[1]&lt;/p&gt;
 &lt;p&gt;So, I went to &lt;a href="http://en.wikipedia.org/wiki/Main_Page"&gt;the source of all information&lt;/a&gt;, and lo! there is a &lt;a href="http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States"&gt;table&lt;/a&gt; whose first column is all the US states. &lt;em&gt;#fistpump&lt;/em&gt; The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the &lt;code&gt;[edit]&lt;/code&gt; link next to the table name...&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Wikipedia table edit button" src="{filename}/images/state-table.jpg" title="Yes, this will definitely work." /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Wikipedia table edit button" src="/images/state-table.jpg" title="Yes, this will definitely work." /&gt;&lt;/p&gt;
 &lt;p&gt;... and clicked through that to observe just the table source. Now this we can work with! &lt;/p&gt;
 &lt;p&gt;I simply copy/pasted this plain text into a file locally (say, &lt;code&gt;states-table.txt&lt;/code&gt;). Then, had a look:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;head -n30 states-table.txt 
@@ -68,6 +68,7 @@ Delaware
 Florida
 Georgia
 Hawaii
+...
 &lt;/pre&gt;&lt;/div&gt;
 
 

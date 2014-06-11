@@ -66,7 +66,7 @@
             </section>
             <p>While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, <code>wget</code> or <code>curl</code> as needed, slice up the html, and be done."[1]</p>
 <p>So, I went to <a href="http://en.wikipedia.org/wiki/Main_Page">the source of all information</a>, and lo! there is a <a href="http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States">table</a> whose first column is all the US states. <em>#fistpump</em> The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the <code>[edit]</code> link next to the table name...</p>
-<p><img alt="Wikipedia table edit button" src="{filename}/images/state-table.jpg" title="Yes, this will definitely work." /></p>
+<p><img alt="Wikipedia table edit button" src="/images/state-table.jpg" title="Yes, this will definitely work." /></p>
 <p>... and clicked through that to observe just the table source. Now this we can work with! </p>
 <p>I simply copy/pasted this plain text into a file locally (say, <code>states-table.txt</code>). Then, had a look:</p>
 <div class="highlight"><pre><span class="nv">$ </span>head -n30 states-table.txt 
@@ -133,6 +133,7 @@ Delaware
 Florida
 Georgia
 Hawaii
+...
 </pre></div>
 
 
