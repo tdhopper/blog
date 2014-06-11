@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="lab notebook, thoughts on data">
+
+            <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
+                
+            <title>Vignette: Create a Text File of U.S. State Names // lab notebook // thoughts on data</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
+        <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+        </head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://db.tt/EZ8f7qwr')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                                                        <h1 class="brand-main"><a href="/">lab notebook</a></h1>
+                            <p class="tagline">thoughts on data</p>
+                                                            <p class="social">
+                                                                <a href="https://github.com/jrmontag">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                                                <a href="https://twitter.com/jrmontag">
+                                        <i class="fa fa-twitter-square fa-3x"></i>
+                                    </a>
+                                                                <a href="https://linkedin.com/in/joshuamontague">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                                                <a href="/feeds/all.rss.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                                            <p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+            <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Vignette: Create a Text File of U.S. State Names</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://joshmontague.com/tag/vignette.html">vignette</a>
+                                                            <a class="post-category" href="http://joshmontague.com/tag/bash.html">bash</a>
+                                                            <a class="post-category" href="http://joshmontague.com/tag/shell.html">shell</a>
+                                                            <a class="post-category" href="http://joshmontague.com/tag/munge.html">munge</a>
+                                                    </p>
+                </header>
+            </section>
+            <p>While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, <code>wget</code> or <code>curl</code> as needed, slice up the html, and be done."[1]</p>
+<p>So, I went to <a href="http://en.wikipedia.org/wiki/Main_Page">the source of all information</a>, and lo! there is a <a href="http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States">table</a> whose first column is all the US states. <em>#fistpump</em> The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the <code>[edit]</code> link next to the table name...</p>
+<p><img alt="Wikipedia table edit button" src="/images/state-table.jpg" title="Yes, this will definitely work." /></p>
+<p>... and clicked through that to observe just the table source. Now this we can work with! </p>
+<p>I simply copy/pasted this plain text into a file locally (say, <code>states-table.txt</code>). Then, had a look:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">head</span> <span class="o">-</span><span class="n">n30</span> <span class="n">states</span><span class="o">-</span><span class="n">table</span><span class="p">.</span><span class="n">txt</span> 
+<span class="o">==</span><span class="n">States</span><span class="o">==</span>
+<span class="p">{</span><span class="o">|</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;wikitable sortable plainrowheaders&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s">&quot;text-align: right;&quot;</span>
+<span class="o">|+</span> <span class="n">States</span> <span class="n">of</span> <span class="n">the</span> <span class="n">United</span> <span class="n">States</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">State</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="o">%|</span><span class="p">[[</span><span class="n">List</span> <span class="n">of</span> <span class="n">U</span><span class="p">.</span><span class="n">S</span><span class="p">.</span> <span class="n">state</span> <span class="n">abbreviations</span><span class="o">|</span><span class="n">Abbr</span><span class="p">.]]</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="o">%|</span><span class="p">[[</span><span class="n">Capital</span> <span class="n">city</span><span class="o">|</span><span class="n">Capital</span><span class="p">]]</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Largest</span> <span class="n">city</span><span class="p">{{</span><span class="err">#</span><span class="n">tag</span><span class="o">:</span><span class="n">ref</span><span class="o">|</span><span class="n">The</span> <span class="n">largest</span> <span class="n">city</span> <span class="n">is</span> <span class="n">the</span> <span class="n">city</span> <span class="k">in</span> <span class="n">a</span> <span class="n">state</span> <span class="n">with</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">population</span> <span class="k">in</span> <span class="n">the</span> <span class="p">[[</span><span class="n">city</span> <span class="n">proper</span><span class="p">]];</span> <span class="p">[[</span><span class="n">metropolitan</span> <span class="n">area</span><span class="p">]]</span><span class="n">s</span> <span class="n">are</span> <span class="n">not</span> <span class="n">considered</span> <span class="k">in</span> <span class="n">this</span> <span class="n">number</span><span class="p">.</span><span class="o">|</span><span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span><span class="o">|</span><span class="n">name</span><span class="o">=</span><span class="n">a</span><span class="p">}}</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;State and Local Government Finances and Employment&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">cite</span> <span class="n">web</span><span class="o">|</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.census.gov/compendia/statab/2012/tables/12s0448.pdf|title=State and Local Government Finances and Employment|year=2012|publisher=[[United States Census Bureau]]|pages=284|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">11</span><span class="o">%</span> <span class="n">data</span><span class="o">-</span><span class="n">sort</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="o">|</span><span class="n">Statehood</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s">&quot;12%&quot;</span><span class="o">|</span><span class="n">Population</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">2013</span> <span class="n">est</span><span class="p">)</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="n">PopEstUS</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">cite</span> <span class="n">web</span><span class="o">|</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.census.gov/popest/data/state/totals/2013/tables/NST-EST2013-01.xls|title=Table 1. Annual Estimates of the Population for the United States, Regions, States, and Puerto Rico: April 1, 2010 to July 1, 2013|format=[[Microsoft Excel]]|work=2013 Population Estimates|publisher=[[United States Census Bureau]], Population Division|date=December 2013|accessdate=January 12, 2014}}&lt;/ref&gt;</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Total</span> <span class="n">area</span> <span class="k">in</span> <span class="n">mi</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">km</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">){{</span><span class="err">#</span><span class="n">tag</span><span class="o">:</span><span class="n">ref</span><span class="o">|</span><span class="n">Area</span> <span class="n">figures</span> <span class="n">are</span> <span class="n">rounded</span> <span class="n">to</span> <span class="n">the</span> <span class="n">nearest</span> <span class="n">whole</span> <span class="n">number</span><span class="p">.</span><span class="o">|</span><span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span><span class="o">|</span><span class="n">name</span><span class="o">=</span><span class="n">b</span><span class="p">}}</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;2010 Census of Population and Housing&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">cite</span> <span class="n">web</span><span class="o">|</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.census.gov/prod/cen2010/cph-2-1.pdf|title=2010 Census of Population and Housing|date=September 2012|publisher=[[United States Census Bureau]]|pages=41|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Land</span> <span class="n">area</span> <span class="k">in</span> <span class="n">mi</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">km</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span> <span class="n">name</span><span class="o">=</span><span class="n">b</span> <span class="o">/&gt;&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;2010 Census of Population and Housing&quot;</span> <span class="o">/&gt;</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Water</span> <span class="n">area</span> <span class="k">in</span> <span class="n">mi</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">km</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span> <span class="n">name</span><span class="o">=</span><span class="n">b</span> <span class="o">/&gt;&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;2010 Census of Population and Housing&quot;</span> <span class="o">/&gt;</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="o">%|</span><span class="p">[[</span><span class="n">List</span> <span class="n">of</span> <span class="n">United</span> <span class="n">States</span> <span class="n">congressional</span> <span class="n">districts</span><span class="o">|</span><span class="n">House</span> <span class="n">seat</span><span class="p">(</span><span class="n">s</span><span class="p">)]]</span>
+<span class="o">|-</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="o">|</span><span class="p">{{</span><span class="n">flag</span><span class="o">|</span><span class="n">Alabama</span><span class="p">}}</span>
+<span class="o">|</span><span class="n">AL</span>
+<span class="o">|</span><span class="p">[[</span><span class="n">Montgomery</span><span class="p">,</span> <span class="n">Alabama</span><span class="o">|</span><span class="n">Montgomery</span><span class="p">]]</span>
+<span class="o">|</span><span class="p">[[</span><span class="n">Birmingham</span><span class="p">,</span> <span class="n">Alabama</span><span class="o">|</span><span class="n">Birmingham</span><span class="p">]]</span>
+<span class="o">|</span><span class="n">December</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">1819</span>
+<span class="o">|</span><span class="mi">4</span><span class="p">,</span><span class="mi">833</span><span class="p">,</span><span class="mi">722</span>
+<span class="o">|</span><span class="p">{{</span><span class="n">Convert</span><span class="o">|</span><span class="mi">52420</span><span class="o">|</span><span class="n">mi2</span><span class="o">|</span><span class="n">km2</span><span class="o">|</span><span class="n">sigfig</span><span class="o">=</span><span class="mi">6</span><span class="o">|</span><span class="n">abbr</span><span class="o">=</span><span class="n">values</span><span class="o">|</span><span class="n">sortable</span><span class="o">=</span><span class="n">on</span><span class="p">}}</span>
+<span class="o">|</span><span class="p">{{</span><span class="n">Convert</span><span class="o">|</span><span class="mi">50645</span><span class="o">|</span><span class="n">mi2</span><span class="o">|</span><span class="n">km2</span><span class="o">|</span><span class="n">sigfig</span><span class="o">=</span><span class="mi">6</span><span class="o">|</span><span class="n">abbr</span><span class="o">=</span><span class="n">values</span><span class="o">|</span><span class="n">sortable</span><span class="o">=</span><span class="n">on</span><span class="p">}}</span>
+<span class="o">|</span><span class="p">{{</span><span class="n">Convert</span><span class="o">|</span><span class="mi">1775</span><span class="o">|</span><span class="n">mi2</span><span class="o">|</span><span class="n">km2</span><span class="o">|</span><span class="n">sigfig</span><span class="o">=</span><span class="mi">4</span><span class="o">|</span><span class="n">abbr</span><span class="o">=</span><span class="n">values</span><span class="o">|</span><span class="n">sortable</span><span class="o">=</span><span class="n">on</span><span class="p">}}</span>
+<span class="o">|</span><span class="mi">7</span>
+<span class="o">|-</span>
+<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="o">|</span><span class="p">{{</span><span class="n">flag</span><span class="o">|</span><span class="n">Alaska</span><span class="p">}}</span>
+<span class="o">|</span><span class="n">AK</span>
+<span class="o">|</span><span class="p">[[</span><span class="n">Juneau</span><span class="p">,</span> <span class="n">Alaska</span><span class="o">|</span><span class="n">Juneau</span><span class="p">]]</span>
+<span class="o">|</span><span class="p">[[</span><span class="n">Anchorage</span><span class="p">,</span> <span class="n">Alaska</span><span class="o">|</span><span class="n">Anchorage</span><span class="p">]]</span>
+<span class="o">|</span><span class="n">January</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1959</span>
+</pre></div>
+
+
+<p>Clearly there's a lot of extra formatting for the other columns, but we can see a couple of the state names, so we can definitely observe some patterns. A simple <code>grep</code> and <code>sed</code> combination get us almost to the finish line:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="n">states</span><span class="o">-</span><span class="n">table</span><span class="p">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&quot;flag|&quot;</span> <span class="o">|</span> <span class="n">sed</span> <span class="err">&#39;</span><span class="n">s</span><span class="o">/^</span><span class="p">.</span><span class="o">*</span><span class="n">flag</span><span class="o">|</span><span class="c1">//;s/}}.*//&#39;</span>
+<span class="n">Alabama</span>
+<span class="n">Alaska</span>
+<span class="n">Arizona</span>
+<span class="n">Arkansas</span>
+<span class="n">California</span>
+<span class="n">Colorado</span>
+<span class="n">Connecticut</span>
+<span class="n">Delaware</span>
+<span class="n">Florida</span>
+<span class="n">Georgia</span> <span class="p">(</span><span class="n">U</span><span class="p">.</span><span class="n">S</span><span class="p">.</span> <span class="n">state</span><span class="p">)</span><span class="o">|</span><span class="n">name</span><span class="o">=</span><span class="n">Georgia</span>
+<span class="n">Hawaii</span>
+<span class="p">...</span>
+</pre></div>
+
+
+<p>One extra bit of <code>sed</code> formatting (strip anything that's not a letter)... </p>
+<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="n">states</span><span class="o">-</span><span class="n">table</span><span class="p">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&quot;flag|&quot;</span> <span class="o">|</span> <span class="n">sed</span> <span class="err">&#39;</span><span class="n">s</span><span class="o">/^</span><span class="p">.</span><span class="o">*</span><span class="n">flag</span><span class="o">|</span><span class="c1">//;s/}}.*//;s/ [^a-Z].*$//&#39;</span>
+<span class="n">Alabama</span>
+<span class="n">Alaska</span>
+<span class="n">Arizona</span>
+<span class="n">Arkansas</span>
+<span class="n">California</span>
+<span class="n">Colorado</span>
+<span class="n">Connecticut</span>
+<span class="n">Delaware</span>
+<span class="n">Florida</span>
+<span class="n">Georgia</span>
+<span class="n">Hawaii</span>
+</pre></div>
+
+
+<p>... and we're good to go! (note: if you're doing this on OS X, you may have to swap that last <code>sed</code> range for <code>[^a-zA-Z]</code>) </p>
+<p>It's always nice to flex your command-line fu.</p>
+<p>[1] In hindsight, I clearly could have spent an extra 30 seconds on google and just copypasta'd the results from a site like <a href="http://liststates.com/">this one</a>. But where's the fun in that?? </p>
+            <a href="#" class="go-top">Go Top</a>
+                <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "joshmontaguecom"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+            <footer class="footer">
+    <p>&copy; Josh Montague &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+        <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-46808845-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>
