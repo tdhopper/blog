@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="lab notebook, thoughts on data">
 
-            <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
-                
-            <title>Vignette: Create a Text File of U.S. State Names // lab notebook // thoughts on data</title>
-    
+        <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
+
+        <title>Vignette: Create a Text File of U.S. State Names // lab notebook // thoughts on data</title>
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
-        <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
     <script>
         $(document).ready(function(){
             $(".content").fitVids();
         });
     </script>
-        </head>
+</head>
 
 <body>
     <div class="pure-g-r" id="layout">
@@ -30,43 +30,43 @@
                 <div class="cover-body">
                     <header class="header">
                         <hgroup>
-                                                        <h1 class="brand-main"><a href="/">lab notebook</a></h1>
+                            <h1 class="brand-main"><a href="/">lab notebook</a></h1>
                             <p class="tagline">thoughts on data</p>
-                                                            <p class="social">
-                                                                <a href="https://github.com/jrmontag">
+                                <p class="social">
+                                    <a href="https://github.com/jrmontag">
                                         <i class="fa fa-github fa-3x"></i>
                                     </a>
-                                                                <a href="https://twitter.com/jrmontag">
+                                    <a href="https://twitter.com/jrmontag">
                                         <i class="fa fa-twitter-square fa-3x"></i>
                                     </a>
-                                                                <a href="https://linkedin.com/in/joshuamontague">
+                                    <a href="https://linkedin.com/in/joshuamontague">
                                         <i class="fa fa-linkedin fa-3x"></i>
                                     </a>
-                                                                <a href="/feeds/all.rss.xml">
+                                    <a href="/feeds/all.rss.xml">
                                         <i class="fa fa-rss fa-3x"></i>
                                     </a>
-                                                            <p>
+                                <p>
                         </hgroup>
                     </header>
                 </div>
             </div>
         </div>
-            <div class="pure-u">
+    <div class="pure-u">
         <div class="content">
             <section class="post">
                 <header class="post-header">
                     <h1>Vignette: Create a Text File of U.S. State Names</h1>
                         <p class="post-meta">
                             // under                                 <a class="post-category" href="http://joshmontague.com/tag/vignette.html">vignette</a>
-                                                            <a class="post-category" href="http://joshmontague.com/tag/bash.html">bash</a>
-                                                            <a class="post-category" href="http://joshmontague.com/tag/shell.html">shell</a>
-                                                            <a class="post-category" href="http://joshmontague.com/tag/munge.html">munge</a>
-                                                    </p>
+                                <a class="post-category" href="http://joshmontague.com/tag/bash.html">bash</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/shell.html">shell</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/munge.html">munge</a>
+                        </p>
                 </header>
             </section>
             <p>While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, <code>wget</code> or <code>curl</code> as needed, slice up the html, and be done."[1]</p>
 <p>So, I went to <a href="http://en.wikipedia.org/wiki/Main_Page">the source of all information</a>, and lo! there is a <a href="http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States">table</a> whose first column is all the US states. <em>#fistpump</em> The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the <code>[edit]</code> link next to the table name...</p>
-<p><img alt="Wikipedia table edit button" src="{filename}/images/state-table.jpg" title="Yes, this will definitely work." /></p>
+<p><img alt="Wikipedia table edit button" src="http://joshmontague.com/images/state-table.jpg" title="Yes, this will definitely work." /></p>
 <p>... and clicked through that to observe just the table source. Now this we can work with! </p>
 <p>I simply copy/pasted this plain text into a file locally (say, <code>states-table.txt</code>). Then, had a look:</p>
 <div class="highlight"><pre><span class="nv">$ </span>head -n30 states-table.txt 
@@ -141,7 +141,7 @@ Hawaii
 <p>It's always nice to flex your command-line fu.</p>
 <p>[1] In hindsight, I clearly could have spent an extra 30 seconds on google and just copypasta'd the results from a site like <a href="http://liststates.com/">this one</a>. But where's the fun in that?? </p>
             <a href="#" class="go-top">Go Top</a>
-                <div class="comments">
+    <div class="comments">
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -157,7 +157,7 @@ Hawaii
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
-            <footer class="footer">
+<footer class="footer">
     <p>&copy; Josh Montague &ndash;
         Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
         for <a href="http://blog.getpelican.com/">Pelican</a>
@@ -189,7 +189,7 @@ Hawaii
             event.preventDefault();
         });
     </script>
-        <script type="text/javascript">
+    <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
