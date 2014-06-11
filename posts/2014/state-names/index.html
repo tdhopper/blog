@@ -66,73 +66,73 @@
             </section>
             <p>While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, <code>wget</code> or <code>curl</code> as needed, slice up the html, and be done."[1]</p>
 <p>So, I went to <a href="http://en.wikipedia.org/wiki/Main_Page">the source of all information</a>, and lo! there is a <a href="http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States">table</a> whose first column is all the US states. <em>#fistpump</em> The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the <code>[edit]</code> link next to the table name...</p>
-<p><img alt="Wikipedia table edit button" src="/images/state-table.jpg" title="Yes, this will definitely work." /></p>
+<p><img alt="Wikipedia table edit button" src="{filename}/images/state-table.jpg" title="Yes, this will definitely work." /></p>
 <p>... and clicked through that to observe just the table source. Now this we can work with! </p>
 <p>I simply copy/pasted this plain text into a file locally (say, <code>states-table.txt</code>). Then, had a look:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">head</span> <span class="o">-</span><span class="n">n30</span> <span class="n">states</span><span class="o">-</span><span class="n">table</span><span class="p">.</span><span class="n">txt</span> 
-<span class="o">==</span><span class="n">States</span><span class="o">==</span>
-<span class="p">{</span><span class="o">|</span> <span class="n">class</span><span class="o">=</span><span class="s">&quot;wikitable sortable plainrowheaders&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s">&quot;text-align: right;&quot;</span>
-<span class="o">|+</span> <span class="n">States</span> <span class="n">of</span> <span class="n">the</span> <span class="n">United</span> <span class="n">States</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">State</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="o">%|</span><span class="p">[[</span><span class="n">List</span> <span class="n">of</span> <span class="n">U</span><span class="p">.</span><span class="n">S</span><span class="p">.</span> <span class="n">state</span> <span class="n">abbreviations</span><span class="o">|</span><span class="n">Abbr</span><span class="p">.]]</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="o">%|</span><span class="p">[[</span><span class="n">Capital</span> <span class="n">city</span><span class="o">|</span><span class="n">Capital</span><span class="p">]]</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Largest</span> <span class="n">city</span><span class="p">{{</span><span class="err">#</span><span class="n">tag</span><span class="o">:</span><span class="n">ref</span><span class="o">|</span><span class="n">The</span> <span class="n">largest</span> <span class="n">city</span> <span class="n">is</span> <span class="n">the</span> <span class="n">city</span> <span class="k">in</span> <span class="n">a</span> <span class="n">state</span> <span class="n">with</span> <span class="n">the</span> <span class="n">largest</span> <span class="n">population</span> <span class="k">in</span> <span class="n">the</span> <span class="p">[[</span><span class="n">city</span> <span class="n">proper</span><span class="p">]];</span> <span class="p">[[</span><span class="n">metropolitan</span> <span class="n">area</span><span class="p">]]</span><span class="n">s</span> <span class="n">are</span> <span class="n">not</span> <span class="n">considered</span> <span class="k">in</span> <span class="n">this</span> <span class="n">number</span><span class="p">.</span><span class="o">|</span><span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span><span class="o">|</span><span class="n">name</span><span class="o">=</span><span class="n">a</span><span class="p">}}</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;State and Local Government Finances and Employment&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">cite</span> <span class="n">web</span><span class="o">|</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.census.gov/compendia/statab/2012/tables/12s0448.pdf|title=State and Local Government Finances and Employment|year=2012|publisher=[[United States Census Bureau]]|pages=284|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">11</span><span class="o">%</span> <span class="n">data</span><span class="o">-</span><span class="n">sort</span><span class="o">-</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;date&quot;</span><span class="o">|</span><span class="n">Statehood</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s">&quot;12%&quot;</span><span class="o">|</span><span class="n">Population</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">2013</span> <span class="n">est</span><span class="p">)</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="n">PopEstUS</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">cite</span> <span class="n">web</span><span class="o">|</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.census.gov/popest/data/state/totals/2013/tables/NST-EST2013-01.xls|title=Table 1. Annual Estimates of the Population for the United States, Regions, States, and Puerto Rico: April 1, 2010 to July 1, 2013|format=[[Microsoft Excel]]|work=2013 Population Estimates|publisher=[[United States Census Bureau]], Population Division|date=December 2013|accessdate=January 12, 2014}}&lt;/ref&gt;</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Total</span> <span class="n">area</span> <span class="k">in</span> <span class="n">mi</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">km</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">){{</span><span class="err">#</span><span class="n">tag</span><span class="o">:</span><span class="n">ref</span><span class="o">|</span><span class="n">Area</span> <span class="n">figures</span> <span class="n">are</span> <span class="n">rounded</span> <span class="n">to</span> <span class="n">the</span> <span class="n">nearest</span> <span class="n">whole</span> <span class="n">number</span><span class="p">.</span><span class="o">|</span><span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span><span class="o">|</span><span class="n">name</span><span class="o">=</span><span class="n">b</span><span class="p">}}</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;2010 Census of Population and Housing&quot;</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">cite</span> <span class="n">web</span><span class="o">|</span><span class="n">url</span><span class="o">=</span><span class="n">http</span><span class="o">:</span><span class="c1">//www.census.gov/prod/cen2010/cph-2-1.pdf|title=2010 Census of Population and Housing|date=September 2012|publisher=[[United States Census Bureau]]|pages=41|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Land</span> <span class="n">area</span> <span class="k">in</span> <span class="n">mi</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">km</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span> <span class="n">name</span><span class="o">=</span><span class="n">b</span> <span class="o">/&gt;&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;2010 Census of Population and Housing&quot;</span> <span class="o">/&gt;</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="o">%|</span><span class="n">Water</span> <span class="n">area</span> <span class="k">in</span> <span class="n">mi</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">km</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">&lt;/</span><span class="n">sup</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="n">ref</span> <span class="n">group</span><span class="o">=</span><span class="n">upper</span><span class="o">-</span><span class="n">alpha</span> <span class="n">name</span><span class="o">=</span><span class="n">b</span> <span class="o">/&gt;&lt;</span><span class="n">ref</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;2010 Census of Population and Housing&quot;</span> <span class="o">/&gt;</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;col&quot;</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="o">%|</span><span class="p">[[</span><span class="n">List</span> <span class="n">of</span> <span class="n">United</span> <span class="n">States</span> <span class="n">congressional</span> <span class="n">districts</span><span class="o">|</span><span class="n">House</span> <span class="n">seat</span><span class="p">(</span><span class="n">s</span><span class="p">)]]</span>
-<span class="o">|-</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="o">|</span><span class="p">{{</span><span class="n">flag</span><span class="o">|</span><span class="n">Alabama</span><span class="p">}}</span>
-<span class="o">|</span><span class="n">AL</span>
-<span class="o">|</span><span class="p">[[</span><span class="n">Montgomery</span><span class="p">,</span> <span class="n">Alabama</span><span class="o">|</span><span class="n">Montgomery</span><span class="p">]]</span>
-<span class="o">|</span><span class="p">[[</span><span class="n">Birmingham</span><span class="p">,</span> <span class="n">Alabama</span><span class="o">|</span><span class="n">Birmingham</span><span class="p">]]</span>
-<span class="o">|</span><span class="n">December</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">1819</span>
-<span class="o">|</span><span class="mi">4</span><span class="p">,</span><span class="mi">833</span><span class="p">,</span><span class="mi">722</span>
-<span class="o">|</span><span class="p">{{</span><span class="n">Convert</span><span class="o">|</span><span class="mi">52420</span><span class="o">|</span><span class="n">mi2</span><span class="o">|</span><span class="n">km2</span><span class="o">|</span><span class="n">sigfig</span><span class="o">=</span><span class="mi">6</span><span class="o">|</span><span class="n">abbr</span><span class="o">=</span><span class="n">values</span><span class="o">|</span><span class="n">sortable</span><span class="o">=</span><span class="n">on</span><span class="p">}}</span>
-<span class="o">|</span><span class="p">{{</span><span class="n">Convert</span><span class="o">|</span><span class="mi">50645</span><span class="o">|</span><span class="n">mi2</span><span class="o">|</span><span class="n">km2</span><span class="o">|</span><span class="n">sigfig</span><span class="o">=</span><span class="mi">6</span><span class="o">|</span><span class="n">abbr</span><span class="o">=</span><span class="n">values</span><span class="o">|</span><span class="n">sortable</span><span class="o">=</span><span class="n">on</span><span class="p">}}</span>
-<span class="o">|</span><span class="p">{{</span><span class="n">Convert</span><span class="o">|</span><span class="mi">1775</span><span class="o">|</span><span class="n">mi2</span><span class="o">|</span><span class="n">km2</span><span class="o">|</span><span class="n">sigfig</span><span class="o">=</span><span class="mi">4</span><span class="o">|</span><span class="n">abbr</span><span class="o">=</span><span class="n">values</span><span class="o">|</span><span class="n">sortable</span><span class="o">=</span><span class="n">on</span><span class="p">}}</span>
-<span class="o">|</span><span class="mi">7</span>
-<span class="o">|-</span>
-<span class="o">!</span><span class="n">scope</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="o">|</span><span class="p">{{</span><span class="n">flag</span><span class="o">|</span><span class="n">Alaska</span><span class="p">}}</span>
-<span class="o">|</span><span class="n">AK</span>
-<span class="o">|</span><span class="p">[[</span><span class="n">Juneau</span><span class="p">,</span> <span class="n">Alaska</span><span class="o">|</span><span class="n">Juneau</span><span class="p">]]</span>
-<span class="o">|</span><span class="p">[[</span><span class="n">Anchorage</span><span class="p">,</span> <span class="n">Alaska</span><span class="o">|</span><span class="n">Anchorage</span><span class="p">]]</span>
-<span class="o">|</span><span class="n">January</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1959</span>
+<div class="highlight"><pre><span class="nv">$ </span>head -n30 states-table.txt 
+<span class="o">==</span><span class="nv">States</span><span class="o">==</span>
+<span class="o">{</span>| <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;wikitable sortable plainrowheaders&quot;</span> <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;text-align: right;&quot;</span>
+|+ States of the United States
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|State
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>1%|<span class="o">[[</span>List of U.S. state abbreviations|Abbr.<span class="o">]]</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>8%|<span class="o">[[</span>Capital city|Capital<span class="o">]]</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Largest city<span class="o">{{</span><span class="c">#tag:ref|The largest city is the city in a state with the largest population in the [[city proper]]; [[metropolitan area]]s are not considered in this number.|group=upper-alpha|name=a}}&lt;ref name=&quot;State and Local Government Finances and Employment&quot;&gt;{{cite web|url=http://www.census.gov/compendia/statab/2012/tables/12s0448.pdf|title=State and Local Government Finances and Employment|year=2012|publisher=[[United States Census Bureau]]|pages=284|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>11% data-sort-type<span class="o">=</span><span class="s2">&quot;date&quot;</span>|Statehood
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span><span class="s2">&quot;12%&quot;</span>|Population&lt;br&gt;<span class="o">(</span>2013 est<span class="o">)</span>&lt;ref <span class="nv">name</span><span class="o">=</span>PopEstUS&gt;<span class="o">{{</span>cite web|url<span class="o">=</span>http://www.census.gov/popest/data/state/totals/2013/tables/NST-EST2013-01.xls|title<span class="o">=</span>Table 1. Annual Estimates of the Population <span class="k">for </span>the United States, Regions, States, and Puerto Rico: April 1, 2010 to July 1, 2013|format<span class="o">=[[</span>Microsoft Excel<span class="o">]]</span>|work<span class="o">=</span>2013 Population Estimates|publisher<span class="o">=[[</span>United States Census Bureau<span class="o">]]</span>, Population Division|date<span class="o">=</span>December 2013|accessdate<span class="o">=</span>January 12, 2014<span class="o">}}</span>&lt;/ref&gt;
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Total area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">){{</span><span class="c">#tag:ref|Area figures are rounded to the nearest whole number.|group=upper-alpha|name=b}}&lt;ref name=&quot;2010 Census of Population and Housing&quot;&gt;{{cite web|url=http://www.census.gov/prod/cen2010/cph-2-1.pdf|title=2010 Census of Population and Housing|date=September 2012|publisher=[[United States Census Bureau]]|pages=41|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Land area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">)</span>&lt;ref <span class="nv">group</span><span class="o">=</span>upper-alpha <span class="nv">name</span><span class="o">=</span>b /&gt;&lt;ref <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;2010 Census of Population and Housing&quot;</span> /&gt;
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Water area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">)</span>&lt;ref <span class="nv">group</span><span class="o">=</span>upper-alpha <span class="nv">name</span><span class="o">=</span>b /&gt;&lt;ref <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;2010 Census of Population and Housing&quot;</span> /&gt;
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>1%|<span class="o">[[</span>List of United States congressional districts|House seat<span class="o">(</span>s<span class="o">)]]</span>
+|-
+!scope<span class="o">=</span><span class="s2">&quot;row&quot;</span>|<span class="o">{{</span>flag|Alabama<span class="o">}}</span>
+|AL
+|<span class="o">[[</span>Montgomery, Alabama|Montgomery<span class="o">]]</span>
+|<span class="o">[[</span>Birmingham, Alabama|Birmingham<span class="o">]]</span>
+|December 14, 1819
+|4,833,722
+|<span class="o">{{</span>Convert|52420|mi2|km2|sigfig<span class="o">=</span>6|abbr<span class="o">=</span>values|sortable<span class="o">=</span>on<span class="o">}}</span>
+|<span class="o">{{</span>Convert|50645|mi2|km2|sigfig<span class="o">=</span>6|abbr<span class="o">=</span>values|sortable<span class="o">=</span>on<span class="o">}}</span>
+|<span class="o">{{</span>Convert|1775|mi2|km2|sigfig<span class="o">=</span>4|abbr<span class="o">=</span>values|sortable<span class="o">=</span>on<span class="o">}}</span>
+|7
+|-
+!scope<span class="o">=</span><span class="s2">&quot;row&quot;</span>|<span class="o">{{</span>flag|Alaska<span class="o">}}</span>
+|AK
+|<span class="o">[[</span>Juneau, Alaska|Juneau<span class="o">]]</span>
+|<span class="o">[[</span>Anchorage, Alaska|Anchorage<span class="o">]]</span>
+|January 3, 1959
 </pre></div>
 
 
 <p>Clearly there's a lot of extra formatting for the other columns, but we can see a couple of the state names, so we can definitely observe some patterns. A simple <code>grep</code> and <code>sed</code> combination get us almost to the finish line:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="n">states</span><span class="o">-</span><span class="n">table</span><span class="p">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&quot;flag|&quot;</span> <span class="o">|</span> <span class="n">sed</span> <span class="err">&#39;</span><span class="n">s</span><span class="o">/^</span><span class="p">.</span><span class="o">*</span><span class="n">flag</span><span class="o">|</span><span class="c1">//;s/}}.*//&#39;</span>
-<span class="n">Alabama</span>
-<span class="n">Alaska</span>
-<span class="n">Arizona</span>
-<span class="n">Arkansas</span>
-<span class="n">California</span>
-<span class="n">Colorado</span>
-<span class="n">Connecticut</span>
-<span class="n">Delaware</span>
-<span class="n">Florida</span>
-<span class="n">Georgia</span> <span class="p">(</span><span class="n">U</span><span class="p">.</span><span class="n">S</span><span class="p">.</span> <span class="n">state</span><span class="p">)</span><span class="o">|</span><span class="n">name</span><span class="o">=</span><span class="n">Georgia</span>
-<span class="n">Hawaii</span>
-<span class="p">...</span>
+<div class="highlight"><pre><span class="nv">$ </span>cat states-table.txt | grep <span class="s2">&quot;flag|&quot;</span> | sed <span class="s1">&#39;s/^.*flag|//;s/}}.*//&#39;</span>
+Alabama
+Alaska
+Arizona
+Arkansas
+California
+Colorado
+Connecticut
+Delaware
+Florida
+Georgia <span class="o">(</span>U.S. state<span class="o">)</span>|name<span class="o">=</span>Georgia
+Hawaii
+...
 </pre></div>
 
 
 <p>One extra bit of <code>sed</code> formatting (strip anything that's not a letter)... </p>
-<div class="highlight"><pre><span class="err">$</span> <span class="n">cat</span> <span class="n">states</span><span class="o">-</span><span class="n">table</span><span class="p">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&quot;flag|&quot;</span> <span class="o">|</span> <span class="n">sed</span> <span class="err">&#39;</span><span class="n">s</span><span class="o">/^</span><span class="p">.</span><span class="o">*</span><span class="n">flag</span><span class="o">|</span><span class="c1">//;s/}}.*//;s/ [^a-Z].*$//&#39;</span>
-<span class="n">Alabama</span>
-<span class="n">Alaska</span>
-<span class="n">Arizona</span>
-<span class="n">Arkansas</span>
-<span class="n">California</span>
-<span class="n">Colorado</span>
-<span class="n">Connecticut</span>
-<span class="n">Delaware</span>
-<span class="n">Florida</span>
-<span class="n">Georgia</span>
-<span class="n">Hawaii</span>
+<div class="highlight"><pre><span class="nv">$ </span>cat states-table.txt | grep <span class="s2">&quot;flag|&quot;</span> | sed <span class="s1">&#39;s/^.*flag|//;s/}}.*//;s/ [^a-Z].*$//&#39;</span>
+Alabama
+Alaska
+Arizona
+Arkansas
+California
+Colorado
+Connecticut
+Delaware
+Florida
+Georgia
+Hawaii
 </pre></div>
 
 
