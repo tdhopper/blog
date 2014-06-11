@@ -2,7 +2,7 @@ Title: Weekend Project: Build a Pelican-powered site on GitHub Pages
 Slug: pelican-on-github
 Date: 2014-01-15 
 Tags: python, pelican, git, weekend
-Summary: A how-to on using a GitHub project repository to host and serve the static content for a simple blog site written in Markdown, compiled and configured in Python. 
+Summary: Getting started using a GitHub project repository to host and serve the static content for a simple blog site written in Markdown, compiled and configured in Python. 
 
 > Disclaimer: 
 > This post got pretty long, especially for the first real post on this site. But by boiling down my very non-linear experience and putting this in writing, I hope that you could read through this and make it all work in an hour or so. Let me know how close that is to reality. 
