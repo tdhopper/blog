@@ -6,7 +6,7 @@ AUTHOR = u'Josh Montague'
 SITENAME = u'lab notebook'
 SITEURL = 'http://joshmontague.com'
 #SITEURL = 'http://jrmontag.github.io/blog'
-MINI_BIO = u'I type into colored screens all day. Mostly about social data, often in Python.'
+MINI_BIO = u'I type into colored screens all day. Mostly about data, often in Python.'
 TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
 
@@ -57,9 +57,16 @@ else:
 #        , ('extra/favicon.ico', 'favicon.ico')
 #    )
 
-PATH = '/Users/jrm/blog/src/content'
+# configure the filepath appropriately for the system we're on
+# old MB
+#PATH = '/Users/jrm/blog/src/content'
+# MBP
+PATH = '/Users/jmontague/blog/src/content'
 
-STATIC_PATHS = [ 'extra', 'images' ]
+STATIC_PATHS = [ 
+                'extra'
+                , 'images' 
+                ]
 
 # specify the desired output location of some files in the 'extra' dev dir
 EXTRA_PATH_METADATA = {

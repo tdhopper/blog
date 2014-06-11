@@ -2,19 +2,19 @@ Title: Vignette: Create a Text File of U.S. State Names
 Slug: state-names
 Date: 2014-06-09
 Tags: vignette, bash, shell, munge 
-Summary: Create a simple text file of U.S. state names with minimal typing. 
+Summary: Creating a simple data file of U.S. state names with the help of Wikipedia and a command line. 
 
 While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, `wget` or `curl` as needed, slice up the html, and be done."[1]
 
 So, I went to [the source of all information](http://en.wikipedia.org/wiki/Main_Page), and lo! there is a [table](http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States) whose first column is all the US states. *#fistpump* The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the `[edit]` link next to the table name...
 
-![Wikipedia table edit button](/images/state-table.jpg "Yes, this will definitely work.")
+![Wikipedia table edit button]({filename}/images/state-table.jpg "Yes, this will definitely work.")
 
 ... and clicked through that to observe just the table source. Now this we can work with! 
 
 I simply copy/pasted this plain text into a file locally (say, `states-table.txt`). Then, had a look:
 
-
+    :::bash
     $ head -n30 states-table.txt 
     ==States==
     {| class="wikitable sortable plainrowheaders" style="text-align: right;"
@@ -50,6 +50,7 @@ I simply copy/pasted this plain text into a file locally (say, `states-table.txt
 
 Clearly there's a lot of extra formatting for the other columns, but we can see a couple of the state names, so we can definitely observe some patterns. A simple `grep` and `sed` combination get us almost to the finish line:
 
+    :::bash
     $ cat states-table.txt | grep "flag|" | sed 's/^.*flag|//;s/}}.*//'
     Alabama
     Alaska
@@ -66,6 +67,7 @@ Clearly there's a lot of extra formatting for the other columns, but we can see 
 
 One extra bit of `sed` formatting (strip anything that's not a letter)... 
 
+    :::bash
     $ cat states-table.txt | grep "flag|" | sed 's/^.*flag|//;s/}}.*//;s/ [^a-Z].*$//'
     Alabama
     Alaska
@@ -78,6 +80,7 @@ One extra bit of `sed` formatting (strip anything that's not a letter)...
     Florida
     Georgia
     Hawaii
+    ...
 
 ... and we're good to go! (note: if you're doing this on OS X, you may have to swap that last `sed` range for `[^a-zA-Z]`) 
  
