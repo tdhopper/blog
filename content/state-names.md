@@ -1,10 +1,10 @@
-Title: Vignette: Create a Text File of U.S. State Names
+Title: Short: Create a Text File of U.S. State Names
 Slug: state-names
 Date: 2014-06-09
-Tags: vignette, bash, shell, munge 
+Tags: short, bash, shell, munge 
 Summary: Creating a simple data file of U.S. state names with the help of Wikipedia and a command line. 
 
-While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, `wget` or `curl` as needed, slice up the html, and be done."[1]
+While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, `wget` or `curl` as needed, slice up the html, and be done."[^woops]
 
 So, I went to [the source of all information](http://en.wikipedia.org/wiki/Main_Page), and lo! there is a [table](http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States) whose first column is all the US states. *#fistpump* The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the `[edit]` link next to the table name...
 
@@ -88,5 +88,5 @@ It's always nice to flex your command-line fu.
 
 
 
-[1] In hindsight, I clearly could have spent an extra 30 seconds on google and just copypasta'd the results from a site like [this one](http://liststates.com/). But where's the fun in that?? 
+[^woops]: In hindsight, I clearly could have spent an extra 30 seconds on google and just copypasta'd the results from a site like [this one](http://liststates.com/). But where's the fun in that?? 
 
