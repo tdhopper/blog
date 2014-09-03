@@ -1,4 +1,4 @@
-Pelican==3.2
+Pelican==3.4
 Markdown==2.3
 ghp-import==0.3
 
