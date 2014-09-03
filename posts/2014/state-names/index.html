@@ -7,7 +7,7 @@
 
         <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
 
-        <title>Vignette: Create a Text File of U.S. State Names // lab notebook // thoughts on data</title>
+        <title>Short: Create a Text File of U.S. State Names // lab notebook // thoughts on data</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -55,16 +55,16 @@
         <div class="content">
             <section class="post">
                 <header class="post-header">
-                    <h1>Vignette: Create a Text File of U.S. State Names</h1>
+                    <h1>Short: Create a Text File of U.S. State Names</h1>
                         <p class="post-meta">
-                            // under                                 <a class="post-category" href="http://joshmontague.com/tag/vignette.html">vignette</a>
+                            // under                                 <a class="post-category" href="http://joshmontague.com/tag/short.html">short</a>
                                 <a class="post-category" href="http://joshmontague.com/tag/bash.html">bash</a>
                                 <a class="post-category" href="http://joshmontague.com/tag/shell.html">shell</a>
                                 <a class="post-category" href="http://joshmontague.com/tag/munge.html">munge</a>
                         </p>
                 </header>
             </section>
-            <p>While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, <code>wget</code> or <code>curl</code> as needed, slice up the html, and be done."[1]</p>
+            <p>While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, <code>wget</code> or <code>curl</code> as needed, slice up the html, and be done."<sup id="fnref:woops"><a class="footnote-ref" href="#fn:woops" rel="footnote">1</a></sup></p>
 <p>So, I went to <a href="http://en.wikipedia.org/wiki/Main_Page">the source of all information</a>, and lo! there is a <a href="http://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States#States">table</a> whose first column is all the US states. <em>#fistpump</em> The only problem is I really wasn't planning to parse HTML for this little exercise; seems like a bit of overkill. But then I noted the <code>[edit]</code> link next to the table name...</p>
 <p><img alt="Wikipedia table edit button" src="http://joshmontague.com/images/state-table.jpg" title="Yes, this will definitely work." /></p>
 <p>... and clicked through that to observe just the table source. Now this we can work with! </p>
@@ -139,7 +139,14 @@ Hawaii
 
 <p>... and we're good to go! (note: if you're doing this on OS X, you may have to swap that last <code>sed</code> range for <code>[^a-zA-Z]</code>) </p>
 <p>It's always nice to flex your command-line fu.</p>
-<p>[1] In hindsight, I clearly could have spent an extra 30 seconds on google and just copypasta'd the results from a site like <a href="http://liststates.com/">this one</a>. But where's the fun in that?? </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:woops">
+<p>In hindsight, I clearly could have spent an extra 30 seconds on google and just copypasta'd the results from a site like <a href="http://liststates.com/">this one</a>. But where's the fun in that?? &#160;<a class="footnote-backref" href="#fnref:woops" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
             <a href="#" class="go-top">Go Top</a>
     <div class="comments">
         <div id="disqus_thread"></div>

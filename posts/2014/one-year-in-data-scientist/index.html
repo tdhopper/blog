@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="lab notebook, thoughts on data">
+
+        <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
+
+        <title>One Year In: Data Scientist // lab notebook // thoughts on data</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://db.tt/EZ8f7qwr')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <h1 class="brand-main"><a href="/">lab notebook</a></h1>
+                            <p class="tagline">thoughts on data</p>
+                                <p class="social">
+                                    <a href="https://github.com/jrmontag">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/jrmontag">
+                                        <i class="fa fa-twitter-square fa-3x"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/joshuamontague">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.rss.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                <p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>One Year In: Data Scientist</h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://joshmontague.com/tag/career.html">career</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/business.html">business</a>
+                        </p>
+                </header>
+            </section>
+            <p>This summer marked just over one year since I donned a goofy hat, shook my advisor's hand, promised my parents they'd never have to attend another graduation ceremony, and received the piece of paper that declared I was done with higher education.<sup id="fnref:school"><a class="footnote-ref" href="#fn:school" rel="footnote">1</a></sup> About the same time, I started working full-time as a data scientist at a small-ish software company. It seems like the one year mark is as good a time as any to pause and reflect, maybe for both my own sake and for that of anyone wondering, "Josh, what were the biggest changes you experienced in your first year that could be helpful for someone interested in making a similar transition?" Maybe no one is actually wondering that... but writing is healthy, so here you go anyway. </p>
+<p>I should start with some context; even though this kind of story will be different for everyone, I can at least give an idea about the "from" and "to". Before this transition, I spent six years in graduate school studying physics. As is common for these programs, there were two or three years of coursework followed by (and overlapping with) three or four years of research. When I left the lab, I started working full-time at a software (<a href="http://en.wikipedia.org/wiki/Software_as_a_service">SaaS</a>) company of about 50 people.<sup id="fnref:path"><a class="footnote-ref" href="#fn:path" rel="footnote">2</a></sup> My role (and that of my small team) was best described as "internal consultancy": doing research and providing answers to technical questions that came from sales, marketing, product, and engineering. This required varying levels of software development and analysis in a handful of languages and environments: predominantly a shell command line (bash), Python, and R. </p>
+<p>Ok, on to the more interesting stuff; what were the biggest changes in this transition? </p>
+<h2>Time</h2>
+<p>The first change I noticed was the perception and use of time. In graduate school, the relevant time scales were something along these lines: </p>
+<ul>
+<li>(<strong>substantial research contribution</strong> aka graduation: <em>five to six years</em>)</li>
+<li><strong>major result</strong> journal article / funding proposal: <em>one year</em></li>
+<li><strong>minor result</strong> conference paper / presentation: <em>three months</em> </li>
+<li><strong>fractional progress</strong> incremental work toward minor results: <em>one week to one month</em></li>
+</ul>
+<p>Particularly in my experimental research, "fractional progress" was simply the nitty gritty bit of getting actual work done: "successfully collecting dataset X," or "completing the analysis of dataset Y," or "finally building the op-amp with the proper gain and signal-to-noise ratio." </p>
+<p>In contrast, I vividly recall the first urgent task I was assigned in my new role, which came with a followup of "we really need these answers soon - like tomorrow." Now, first and foremost: when made frequently, that kind of request can be a real red flag about the perceived value of your time. Thankfully, this was an exceptional case and most requests do not come with a priority-level-9 urgency. But that experience was an extreme example that frames the idea. Relevant time scales in the business world are shorter. I've found the scales to be more along these lines:</p>
+<ul>
+<li><strong>major result</strong> delivery of all projects for quarterly goals: <em>three months</em> </li>
+<li><strong>minor result</strong> success / progress on individual projects: <em>one month</em></li>
+<li><strong>fractional progress</strong> incremental work toward minor results: <em>one day to one week</em> </li>
+</ul>
+<p>As an aside: you may not have thought about time in units of "quarters" before, but in a business setting, you will. See also, the <strong>Business</strong> section, below.</p>
+<p>In this case, "fractional progress" / day-to-day work is pretty similar in scale, but covers many more potential areas: working through a particular data collection or analysis, bug fixes and new features in software and tools, customer conversations and support, putting together presentations for meetings or Meetups, and all manner of assorted other things. Any one of these may be a small (or large) part of a bigger project that provides business value.  </p>
+<p><em>Punchline: time is "shorter"; progress is measured more frequently.</em> </p>
+<h2>Drivers</h2>
+<p>A bigger change, still, was the shift in the motivation and drivers of the work. When I joined my research lab, there was already some research momentum from previous work. For my own research, I took a fork of that previous work and mostly tugged on the interesting threads to see where they led. Now, there were some implicit things at work there, too; for example, my advisor had enough experience to feel that my research was worthwhile and capable of being pitched to funding agencies. But, beyond that, the research directions were - as a favorite professor once described<sup id="fnref:intuition"><a class="footnote-ref" href="#fn:intuition" rel="footnote">3</a></sup> - very much a "follow your nose" experience. Use your intuition and best judgement, but let the path be guided by the new and unexpected discoveries that occur along the way.  </p>
+<p>In my new role, my team is guided by a similar sense of exploration within any particular project (undoubtedly related to fact that we're mostly former research scientists). But the selection of what projects we work on is driven much more by the business needs. Will this project help the industry move forward? Will it drive interest in our products or help us better understand the current use of our services? Does it directly benefit a customer? Does it ultimately lead to revenue for the company? Even though our team is not a software development team, most of our colleagues are; so we try to work using some of the same principles. This means "should we work on X?" is often decided by how close the <a href="http://en.wikipedia.org/wiki/User_story">user story</a> gets to the actual business customer. </p>
+<p><em>Punchline: exploration and following intuition is required, but stay focused on things that will provide business value.</em> </p>
+<h2>Business</h2>
+<p>The last idea I'll mention is around what it means to be a "business." I'll admit that I previously had approximately zero understanding of what came along with - and was considered part of - a business. At some level, it had to mean that there is a product or service (maybe more than one), and revenue came in from somewhere. For example, consumers could pay the business for the product. Or, consumers can use the product for free while being shown advertisements, and those advertisers would contribute revenue to the business for the opportunity to display ads. Or maybe all of the funding comes from an actual person or another business (angel or venture investments) in the hope that someday they'll create a successful product that ends up in one of the first two categories (and subsequently provide a return on investment for whomever provided the initial funds). Anyway, this is all perspective that I have <em>now</em>, but I had no idea about this before. </p>
+<p>One of the most overwhelming changes I experienced was the range of different people and teams involved; it turns out it takes a lot of cooperative, functional teams to make a successful business. Wrapping my head around the acronyms: BD, PMs, AMs, ... I struggled for quite a while trying to understand and internalize the roles that all of these people had. Oh, and those ones are: business development, product (or project) manager (or sometimes "product marketing", just to mess with you), and account managers. Finding out the roles that each of these groups of people (and all the rest!) have within the company is really helpful for understanding your own place and value. Don't be shy about asking folks what they do; it helps identify ways you can be assests for one another. </p>
+<p><em>Punchlines: 1) funding has to come from somewhere; it's helpful to understand what - and to whom - your business owes its existence. 2) It takes a lot of different roles to really make a business rock.<sup id="fnref:headcount"><a class="footnote-ref" href="#fn:headcount" rel="footnote">4</a></sup> It takes time to comprehend how everyone fills their niche, but learning the roles is crucial.</em> </p>
+<h2>Now What?</h2>
+<p>So, what's the takeaway? Unfortunately, I can't help you figure out your new data-related role in a business outside of the research lab (but, hey, congrats on finding something!). But, I hope these thoughts shine a bit of light on some of the challenges I ran into related to the approach and awareness that I brought from my previous role in academic research. Everyone's circumstances are a little different, so you may not experience any of these; or maybe you have more. Either way, good luck in your new path!</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:school">
+<p>Barring, of course, any unexpected impulses to set off for an MBA or MD.&#160;<a class="footnote-backref" href="#fnref:school" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:path">
+<p>Having writen this, it feels like there's also an opportunity for a companion article about the particular path that led me to now; I've added it to my list; stay tuned. &#160;<a class="footnote-backref" href="#fnref:path" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:intuition">
+<p>Part of the reason this line was so memorable was that it came while our mid-career professor was trying to explain how we should use our intuition to solve path integrals in quantum mechanics.  &#160;<a class="footnote-backref" href="#fnref:intuition" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:headcount">
+<p>Again, this is from the perspective of a company with ~50 people. At an earlier stage, there were five or six people, so everyone had to do their best to wear multiple hats.&#160;<a class="footnote-backref" href="#fnref:headcount" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "joshmontaguecom"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<footer class="footer">
+    <p>&copy; Josh Montague &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-46808845-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>
