@@ -4,11 +4,14 @@ Date: 2014-09-03
 Tags: career, business
 Summary: A look back at some of the major changes in my transition from graduate student to data scientist. 
 
+*Updated:* *after a particularly full week recently, another important topic came to mind that I felt would be valuable to include here: "keeping the wheels on the cart." You can find that section at the bottom.* 
+
 This summer marked just over one year since I donned a goofy hat, shook my advisor's hand, promised my parents they'd never have to attend another graduation ceremony, and received the piece of paper that declared I was done with higher education.[^school] About the same time, I started working full-time as a data scientist at a small-ish software company. It seems like the one year mark is as good a time as any to pause and reflect, maybe for both my own sake and for that of anyone wondering, "Josh, what were the biggest changes you experienced in your first year that could be helpful for someone interested in making a similar transition?" Maybe no one is actually wondering that... but writing is healthy, so here you go anyway. 
 
 I should start with some context; even though this kind of story will be different for everyone, I can at least give an idea about the "from" and "to". Before this transition, I spent six years in graduate school studying physics. As is common for these programs, there were two or three years of coursework followed by (and overlapping with) three or four years of research. When I left the lab, I started working full-time at a software ([SaaS](http://en.wikipedia.org/wiki/Software_as_a_service)) company of about 50 people.[^path] My role (and that of my small team) was best described as "internal consultancy": doing research and providing answers to technical questions that came from sales, marketing, product, and engineering. This required varying levels of software development and analysis in a handful of languages and environments: predominantly a shell command line (bash), Python, and R. 
 
 Ok, on to the more interesting stuff; what were the biggest changes in this transition? 
+
 
 ## Time
 
@@ -43,12 +46,22 @@ In my new role, my team is guided by a similar sense of exploration within any p
 
 ## Business
 
-The last idea I'll mention is around what it means to be a "business." I'll admit that I previously had approximately zero understanding of what came along with - and was considered part of - a business. At some level, it had to mean that there is a product or service (maybe more than one), and revenue came in from somewhere. For example, consumers could pay the business for the product. Or, consumers can use the product for free while being shown advertisements, and those advertisers would contribute revenue to the business for the opportunity to display ads. Or maybe all of the funding comes from an actual person or another business (angel or venture investments) in the hope that someday they'll create a successful product that ends up in one of the first two categories (and subsequently provide a return on investment for whomever provided the initial funds). Anyway, this is all perspective that I have *now*, but I had no idea about this before. 
+The <s>last</s> penultimate idea I'll mention is around what it means to be a "business." I'll admit that I previously had approximately zero understanding of what came along with - and was considered part of - a business. At some level, it had to mean that there is a product or service (maybe more than one), and revenue came in from somewhere. For example, consumers could pay the business for the product. Or, consumers can use the product for free while being shown advertisements, and those advertisers would contribute revenue to the business for the opportunity to display ads. Or maybe all of the funding comes from an actual person or another business (angel or venture investments) in the hope that someday they'll create a successful product that ends up in one of the first two categories (and subsequently provide a return on investment for whomever provided the initial funds). Anyway, this is all perspective that I have *now*, but I had no idea about this before. 
 
 One of the most overwhelming changes I experienced was the range of different people and teams involved; it turns out it takes a lot of cooperative, functional teams to make a successful business. Wrapping my head around the acronyms: BD, PMs, AMs, ... I struggled for quite a while trying to understand and internalize the roles that all of these people had. Oh, and those ones are: business development, product (or project) manager (or sometimes "product marketing", just to mess with you), and account managers. Finding out the roles that each of these groups of people (and all the rest!) have within the company is really helpful for understanding your own place and value. Don't be shy about asking folks what they do; it helps identify ways you can be assests for one another. 
 
 *Punchlines: 1) funding has to come from somewhere; it's helpful to understand what - and to whom - your business owes its existence. 2) It takes a lot of different roles to really make a business rock.[^headcount] It takes time to comprehend how everyone fills their niche, but learning the roles is crucial.* 
 
+## "Keeping the wheels on the cart"
+
+Finally, if you're lucky (and good at what you do), there will always be more people requesting your time and effort than you have to give. Being in demand is typically a good thing. What this means, however, is that it's up to you to learn where to draw the lines around what you can successfully deliver. Additionally, even when you think you've drawn your lines reasonably and conservatively, unexpected things will arise. Curveballs are sneaky and inevitable. The server is down, the VPN isn't working, the file is 10x bigger than you thought it would be, there's some previously-unheard-of error for which the holy trinity (Google, StackOverflow, and IRC) are powerless. It happens; the key is not freaking out. 
+
+When the path gets rough and the produce (your projects) starts to fall out of the cart, the key is to focus on keeping the wheels on the cart. Keep your focus on preventing the wholesale collapse of the vehicle (and the subsequent disappointment of all involved stakeholders), and then sort out your issues. This may mean compromising on some of the results, so it's helpful to understand the minimum acceptable version. Ideally, your typical approach is to knock projects out of the park, so it's unlikely that anyone will notice the difference between that and these rare times when you've compromised. 
+
+Transparency goes a long way, too. So, it may even be worth describing how your result differed from what you were hoping to achieve. Your mileage may vary.  
+
+*Punchline: Learn your limits. Focus on keeping things moving when you approach those limits.* 
+ 
 
 ## Now What?
 
