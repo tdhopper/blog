@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="lab notebook, thoughts on data">
+
+        <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
+
+        <title>Short: From plain text to JSON with jq // lab notebook // thoughts on data</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://db.tt/EZ8f7qwr')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <h1 class="brand-main"><a href="/">lab notebook</a></h1>
+                            <p class="tagline">thoughts on data</p>
+                                <p class="social">
+                                    <a href="https://github.com/jrmontag">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/jrmontag">
+                                        <i class="fa fa-twitter-square fa-3x"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/joshuamontague">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.rss.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                <p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>Short: From plain text to JSON with <code>jq</code></h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://joshmontague.com/tag/jq.html">jq</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/command-line.html">command line</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/tools.html">tools</a>
+                        </p>
+                </header>
+            </section>
+            <p>Most data in my work world is <a href="http://www.json.org/">JSON</a>, and so I use a lot of tools designed for that format. For example, we maintain (and use, all the time) <a href="https://pypi.python.org/pypi/gnacs/">an activity parser</a> that is designed for Gnip's <a href="http://en.wikipedia.org/wiki/Activity_Streams_(format)">Activity Stream</a> data format from a half dozen different platforms. It handles all the assorted messages you might get from the API, and lets you pick and choose the output, among other things. </p>
+<p>A relatively new arrow in my quiver of tools at work is <a href="http://stedolan.github.io/jq/"><code>jq</code>, a fast and easy command-line JSON parser</a>. This particular quote on the website is the best summary:</p>
+<blockquote>
+<p><code>jq</code> is like <code>sed</code> for JSON data – you can use it to slice and filter and map and transform structured data with the same ease that <code>sed</code>, <code>awk</code>, <code>grep</code> and friends let you play with text.  </p>
+</blockquote>
+<p>I recently <a href="http://support.gnip.com/articles/data-and-rule-management-with-jq.html">wrote on an article</a> for our support site about using <code>jq</code>; a kind of "tips and tricks with <code>jq</code>". This gave me a great opportunity to experiment with something I'd been curious about: can <code>jq</code> be used to <em>create</em> JSON structures?  </p>
+<p>Spoiler alert: the answer is yes! </p>
+<p>You can <a href="http://support.gnip.com/articles/data-and-rule-management-with-jq.html">click over there if you'd like to read the full article</a>, but I'll add the punch line here. With a combination of <code>split</code>, <code>map</code>, the right command-line arguments, and an alias, I now use this regularly:</p>
+<div class="highlight"><pre><span class="err">$</span> <span class="nt">cat</span> <span class="nt">rules</span><span class="nc">.txt</span>     <span class="err">#</span> <span class="nt">tab-separated</span> <span class="nt">columns</span>
+<span class="nt">dog</span> <span class="nt">lang</span><span class="nd">:en</span> <span class="nt">tag</span><span class="nd">:dogs:english</span>
+<span class="nt">cat</span> <span class="nt">sample</span><span class="nd">:10</span>   <span class="nt">tag</span><span class="nd">:cats:0</span><span class="nc">.1</span>
+<span class="nt">from</span><span class="nd">:gnip</span>   <span class="nt">tag</span><span class="nd">:user:gnip</span>
+
+<span class="err">$</span> <span class="nt">jqrules</span> <span class="nt">rules</span><span class="nc">.txt</span>
+<span class="p">{</span>
+  <span class="s2">&quot;rules&quot;</span><span class="o">:</span> <span class="cp">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dog lang:en&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;tag:dogs:english&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;cat sample:10&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;tag:cats:0.1&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;from:gnip&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;tag:user:gnip&quot;</span>
+    <span class="p">}</span>
+  <span class="cp">]</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>If you skim through <a href="http://stedolan.github.io/jq/manual/">the documentation</a>, it's clear that <code>jq</code> can do a ton of awesome things; every time I learn a new one, it's a great boost in productivity. Happy JSON parsing (and, now, creating)!</p>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "joshmontaguecom"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<footer class="footer">
+    <p>&copy; Josh Montague &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-46808845-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>
