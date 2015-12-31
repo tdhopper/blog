@@ -70,9 +70,10 @@ STATIC_PATHS = [
 
 # specify the desired output location of some files in the 'extra' dev dir
 EXTRA_PATH_METADATA = {
-    'extra/CNAME': {'path': 'CNAME'} 
-    , 'extra/favicon.ico': {'path': 'favicon.ico'} 
-    , 'extra/404.html': {'path': '404.html'} 
+    'extra/CNAME': {'path': 'CNAME'}, 
+    'extra/favicon.ico': {'path': 'favicon.ico'}, 
+    'extra/404.html': {'path': '404.html'},
+    'extra/custom.css': {'path': 'custom.css'} 
     }
 
 # keep pelican from freaking out over pre-formed html 
