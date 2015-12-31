@@ -1,7 +1,8 @@
 Title: Transitioning From Lab Science To Data Science 
 Slug: lab-science-to-data-science
 Date: 2015-12-30 
-Tags: career, transition, grad school, post doc, academia, science, physics, data science, longread 
+Category: longread
+Tags: career, transition, grad school, post doc, academia, science, physics, data science, python, R 
 Summary: How I transitioned from a career in academia to one in data science, and some thoughts on how you might make a similar move. 
 
 

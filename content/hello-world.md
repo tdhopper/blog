@@ -1,5 +1,6 @@
 Title: hello world 
 Date: 2014-01-01  
+Category: shortread
 Tags: pelican 
 Slug: hello-world 
 Author: Josh Montague 

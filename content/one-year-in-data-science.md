@@ -1,10 +1,11 @@
 Title: One Year In: Data Scientist
 Slug: one-year-in-data-scientist
 Date: 2014-09-03
-Tags: career, business
+Category: longread
+Tags: career, business, experience
 Summary: A look back at some of the major changes in my transition from graduate student to data scientist. 
 
-*Updated:* *after a particularly full week recently, another important topic came to mind that I felt would be valuable to include here: "keeping the wheels on the cart." You can find that section at the bottom.* 
+*After a particularly full week recently, another important topic came to mind that I felt would be valuable to include here: "keeping the wheels on the cart." You can find that section at the bottom.* 
 
 This summer marked just over one year since I donned a goofy hat, shook my advisor's hand, promised my parents they'd never have to attend another graduation ceremony, and received the piece of paper that declared I was done with higher education.[^school] About the same time, I started working full-time as a data scientist at a small-ish software company. It seems like the one year mark is as good a time as any to pause and reflect, maybe for both my own sake and for that of anyone wondering, "Josh, what were the biggest changes you experienced in your first year that could be helpful for someone interested in making a similar transition?" Maybe no one is actually wondering that... but writing is healthy, so here you go anyway. 
 

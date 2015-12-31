@@ -1,7 +1,8 @@
-Title: Short: From plain text to JSON with <code>jq</code>
+Title: From plain text to JSON with <code>jq</code>
 Slug: create-json-with-jq
 Date: 2014-09-28
-Tags: jq, command line, tools 
+Category: shortread
+Tags: bash, shell, jq, json, tools 
 Summary: Sometimes using tools differently than intended has fantastic results. Creating nested JSON from a tab- and newline-delimited text file. 
 
 

@@ -1,7 +1,8 @@
-Title: Short: Create a Text File of U.S. State Names
+Title: Creating a Text File of U.S. State Names
 Slug: state-names
 Date: 2014-06-09
-Tags: short, bash, shell, munge 
+Category: shortread
+Tags: bash, shell, tools 
 Summary: Creating a simple data file of U.S. state names with the help of Wikipedia and a command line. 
 
 While working on a project recently, I needed a simple list of US State names. My goal was to have a plain text file, one state per line, no funny business. The order of the states wasn't important. I always like a command-line challenge, so my first thought was "find the list online somewhere, `wget` or `curl` as needed, slice up the html, and be done."[^woops]

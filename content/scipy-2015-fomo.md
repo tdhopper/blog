@@ -1,7 +1,8 @@
 Title: Relieving #SciPy2015 FOMO 
 Slug: scipy2015-fomo 
 Date: 2015-07-11  
-Tags: data science, python, conference, twitter 
+Category: shortread
+Tags: data science, python, scipy, conference, twitter 
 Summary: Catching up on the great content from SciPy2015 without having attended the conference. 
 
 Learning new things is incredible. Especially when you get to the point of building on top of growing skills in a particular domain. Over the last couple of years, I've learned a lot about Python, in particular for use in data science and analysis. I also really enjoy socializing with peers from the field at conferences, and the one Python-specific conference I attended (PyCon 2014) was a blast. Super friendly attendees, and also getting the chance to meet - in person - with folks who only previously manifested on Twitter and websites.
@@ -12,11 +13,12 @@ Knowing that the next best thing to being there is to see the code, slide decks,
 
 - requires #SciPy2015 hashtag
 - requires one of: tutorial, code, slides
-- requires that the Tweet include a link
+- ~~requires that the Tweet include a link~~ (this advanced search feature doesn't appear to work any longer)
 - requires that the Tweet is in English
+- excludes Retweets
 - uses time windowing to focus on that one week (plus a couple of days)
 
-This way I can return to the results and consume them at whatever pace I need. There's an embedded version of this search below, too.
+This way I can return to the results and consume them at whatever pace I need. If the embedded version of the search below isn't working, you can also just [click here to run the search at Twitter.com](https://twitter.com/search?q=%23scipy2015%20%28tutorial%20OR%20slides%20OR%20code%29%20lang%3Aen%20since%3A2015-07-06%20until%3A2015-07-14%20exclude%3Aretweets%20&src=typd).
 
 Of note, Enthought also does a wonderful job of quickly getting the video recordings of the talks into [a super convenient playlist on YouTube](https://www.youtube.com/playlist?list=PLYx7XA2nY5Gcpabmu61kKcToLz0FapmHu). 
 

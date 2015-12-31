@@ -1,6 +1,7 @@
 Title: The Setup
 Slug: the-setup
 Date: 2014-10-28 
+Category: longread
 Tags: gear, hardware, software 
 Summary: My version of The Setup, a post about how I get things done. 
 

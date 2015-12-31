@@ -1,7 +1,8 @@
 Title: Social Media Pulse Meetup Presentation
 Slug: ab-pulse-talk 
 Date: 2014-02-10 
-Tags: javascript, models, meetup 
+Category: shortread 
+Tags: javascript, revealjs, python, modeling, meetup, presentation 
 Summary: Slides (+ some data and analysis) from a recent presentation. 
 
 
