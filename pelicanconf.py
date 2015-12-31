@@ -73,7 +73,7 @@ EXTRA_PATH_METADATA = {
     'extra/CNAME': {'path': 'CNAME'}, 
     'extra/favicon.ico': {'path': 'favicon.ico'}, 
     'extra/404.html': {'path': '404.html'},
-    'extra/custom.css': {'path': 'theme/custom.css'} 
+    'extra/custom.css': {'path': 'theme/css/custom.css'} 
     }
 
 # keep pelican from freaking out over pre-formed html 
