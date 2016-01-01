@@ -5,7 +5,7 @@
 &lt;ul&gt;
 &lt;li&gt;requires #SciPy2015 hashtag&lt;/li&gt;
 &lt;li&gt;requires one of: tutorial, code, slides&lt;/li&gt;
-&lt;li&gt;~~requires that the Tweet include a link~~ (this advanced search feature doesn't appear to work any longer)&lt;/li&gt;
+&lt;li&gt;&lt;strike&gt;requires that the Tweet include a link&lt;/strike&gt; (this search feature doesn't appear to work any longer)&lt;/li&gt;
 &lt;li&gt;requires that the Tweet is in English&lt;/li&gt;
 &lt;li&gt;excludes Retweets&lt;/li&gt;
 &lt;li&gt;uses time windowing to focus on that one week (plus a couple of days)&lt;/li&gt;
