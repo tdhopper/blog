@@ -13,7 +13,7 @@ Knowing that the next best thing to being there is to see the code, slide decks,
 
 - requires #SciPy2015 hashtag
 - requires one of: tutorial, code, slides
-- ~~requires that the Tweet include a link~~ (this advanced search feature doesn't appear to work any longer)
+- <strike>requires that the Tweet include a link</strike> (this search feature doesn't appear to work any longer)
 - requires that the Tweet is in English
 - excludes Retweets
 - uses time windowing to focus on that one week (plus a couple of days)
@@ -21,7 +21,6 @@ Knowing that the next best thing to being there is to see the code, slide decks,
 This way I can return to the results and consume them at whatever pace I need. If the embedded version of the search below isn't working, you can also just [click here to run the search at Twitter.com](https://twitter.com/search?q=%23scipy2015%20%28tutorial%20OR%20slides%20OR%20code%29%20lang%3Aen%20since%3A2015-07-06%20until%3A2015-07-14%20exclude%3Aretweets%20&src=typd).
 
 Of note, Enthought also does a wonderful job of quickly getting the video recordings of the talks into [a super convenient playlist on YouTube](https://www.youtube.com/playlist?list=PLYx7XA2nY5Gcpabmu61kKcToLz0FapmHu). 
-
 
 
 <a class="twitter-timeline" href="https://twitter.com/search?q=tutorial%20OR%20slides%20OR%20code%20%23scipy2015%20lang%3Aen%20since%3A2015-07-06%20until%3A2015-07-14%20filter%3Alinks" data-widget-id="619998240641912832">Tweets about tutorial OR slides OR code #scipy2015 lang:en since:2015-07-06 until:2015-07-14 filter:links</a>
