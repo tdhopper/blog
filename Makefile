@@ -127,11 +127,12 @@ ifdef NAME
 	echo "Title: $(NAME)" >  $(INPUTDIR)/$(SLUG).$(EXT)
 	echo "Slug: $(SLUG)" >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo "Date: $(DATE)" >> $(INPUTDIR)/$(SLUG).$(EXT)
+	echo "Category: " 	 >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo "Tags: " 		 >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo "Summary: "	 >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
 	echo ""              >> $(INPUTDIR)/$(SLUG).$(EXT)
-	${EDITOR} ${INPUTDIR}/${SLUG}.${EXT} &
+	#${EDITOR} ${INPUTDIR}/${SLUG}.${EXT} &
 else
 	@echo 'Variable NAME is not defined.'
 	@echo 'Do make newpost NAME='"'"'Post Name'"'"
