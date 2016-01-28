@@ -11,7 +11,7 @@ During the holidays, the work demand on my team tends to slow down a little whil
 This competition was based on one of the canonical machine learning datasets, [the MNIST handwritten digits](https://en.wikipedia.org/wiki/MNIST_database). This data has [a wonderfully rich history](http://yann.lecun.com/exdb/mnist/), and has been a standard benchmark for classification approaches since the 1990s. The data is in the form of 60,000 training images that are grayscale (intensity levels from 0-255) with accompanying labels (integers 0-9), and 10,000 test images of the same format (but without the labels, of course). 
 
 <center>
-![Example MNIST digit]({filename}/images/mnist-2.png "28x28-pixel digit image")
+![Example MNIST digit]({filename}/images/mnist-2.png "28x28-pixel digit image" width=200)
 
 An example digit (labeled as a 2) from the MNIST dataset.  
 </center>
