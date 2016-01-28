@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="lab notebook, thoughts on data">
+
+        <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
+
+        <title>MNIST + scikit-learn // lab notebook // thoughts on data</title>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/custom.css">
+    <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('https://db.tt/EZ8f7qwr')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <h1 class="brand-main"><a href="/">lab notebook</a></h1>
+                            <p class="tagline">thoughts on data</p>
+                                <p class="social">
+                                    <a href="https://github.com/jrmontag">
+                                        <i class="fa fa-github fa-3x"></i>
+                                    </a>
+                                    <a href="https://twitter.com/jrmontag">
+                                        <i class="fa fa-twitter-square fa-3x"></i>
+                                    </a>
+                                    <a href="https://linkedin.com/in/joshuamontague">
+                                        <i class="fa fa-linkedin fa-3x"></i>
+                                    </a>
+                                    <a href="/feeds/all.rss.xml">
+                                        <i class="fa fa-rss fa-3x"></i>
+                                    </a>
+                                <p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>MNIST + <code>scikit-learn</code></h1>
+                        <p class="post-meta">
+                            // under                                 <a class="post-category" href="http://joshmontague.com/tag/python.html">python</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/ml.html">ML</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/machine-learning.html">machine learning</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/scikit-learn.html">scikit-learn</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/sklearn.html">sklearn</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/mnist.html">MNIST</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/digits.html">digits</a>
+                                <a class="post-category" href="http://joshmontague.com/tag/supervised-learning.html">supervised learning</a>
+                        </p>
+                </header>
+            </section>
+            <p>During the holidays, the work demand on my team tends to slow down a little while people are out or traveling for the holidays. For the second year, we held an intra-team team competition in the vein of <a href="https://www.kaggle.com/competitions">Kaggle competitions</a>. As in those competitions, entrants are given training data and labels, along with the test data on which to make predictions. The submitted predictions are scored and posted to the shared leaderboard (though our leaderboard is typically just a Google Spreadsheet).  </p>
+<p>This competition was based on one of the canonical machine learning datasets, <a href="https://en.wikipedia.org/wiki/MNIST_database">the MNIST handwritten digits</a>. This data has <a href="http://yann.lecun.com/exdb/mnist/">a wonderfully rich history</a>, and has been a standard benchmark for classification approaches since the 1990s. The data is in the form of 60,000 training images that are grayscale (intensity levels from 0-255) with accompanying labels (integers 0-9), and 10,000 test images of the same format (but without the labels, of course). </p>
+<p><center>
+<img alt="Example MNIST digit" src="http://joshmontague.com/images/mnist-2.png" title="28x28-pixel digit image" /></p>
+<p>An example digit (labeled as a 2) from the MNIST dataset.<br />
+</center></p>
+<p>I was pretty surprised that with <a href="http://scikit-learn.org/stable/install.html">the current release of <code>scikit-learn</code></a> (0.17 at the time of writing), a <a href="https://aws.amazon.com/ec2/instance-types/#c3">c3.8xlarge EC2 instance</a>, and about 1.5 hours of processing time, I could obtain above 98% accuracy on the test data (and win the competition). Based on just the infrastructure, I think this would cost about $3.<sup id="fnref:3dollars"><a class="footnote-ref" href="#fn:3dollars" rel="footnote">1</a></sup> Pretty cool! This obviously ignores the value of my time, my previous experience, and the work it took to get to the final solution, but that's a much less quotable way to say it. </p>
+<p><center>
+<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">Year two victory was even more narrow! Last year&#39;s prize was tastier, but this one will probably last longer 🚁😊 <a href="https://t.co/OZ39CShJfX">https://t.co/OZ39CShJfX</a></p>&mdash; Josh Montague (@jrmontag) <a href="https://twitter.com/jrmontag/status/686224933916037120">January 10, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center></p>
+<p>I thought it would be fun to write down how I approached the problem, so here we go! </p>
+<p>First, some history. Last year, we built models to predict third-party predictions of Tweet text sentiment. This was, effectively, "modeling someone else's model." The first edition of the competition went well for me... </p>
+<p><center>
+<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Our team had a kaggle-like competition for <a href="https://twitter.com/hashtag/hackweek?src=hash">#hackweek</a>. Narrow victory; totally worth the time invested. <a href="http://t.co/KsO0LmTMxt">pic.twitter.com/KsO0LmTMxt</a></p>&mdash; Josh Montague (@jrmontag) <a href="https://twitter.com/jrmontag/status/555054775620755456">January 13, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center></p>
+<p>... so this year I felt some pressure as the incumbent. Further adding to the pressure, our whole team has come a long way in our machine learning and modeling abilities, and I think one of my principal advantages the first year was a familiarity with the <a href="http://scikit-learn.org/stable/"><code>scikit-learn</code> library</a>. </p>
+<p>Unfortunately, I never got to write up my experience in the first competition because I was <strong>embarassingly disorganized</strong> in my approach. This haunted me for an entire year, so my goal for this year's edition (in addition to <em>winning</em>) was to strive for a more thoughtful, transparent, and reproducible approach from the very beginning. To be clear, I'm still not an expert in machine learning (this will become clear, shortly) and I figured I'd make some poor choices and mistakes along the way; but, at least this time I'd be more disciplined in my approach. </p>
+<h1>Overview</h1>
+<p>So far, I've tended to think of approaching and solving modeling problems as working along two non-orthogonal axes (especially in machine learning): data/feature engineering, and model selection. Doing both well is the ideal scenario! Short of that, you should play to your strengths, right? Since my knowledge of the <code>scikit-learn</code> API is greater than my knowledge of robust data (feature) engineering, I opted to pursue a "start very wide and focus on the successes" approach to the problem. I would start by iteratively refining a set of models for higher accuracy, and then maybe combine them with some ensemble techniques. If or when I exhausted that path, I'd go back and spend more time on feature engineering.</p>
+<h1>Approach</h1>
+<p>For the sake of following along, you can always <a href="https://github.com/jrmontag/mnist-sklearn">hop over to poke around in my code</a>. You could even follow the README instructions to build the whole thing while you're reading this article!</p>
+<p>The data was handed to us in a binary format that I didn't fully understand.<sup id="fnref:yan"><a class="footnote-ref" href="#fn:yan" rel="footnote">2</a></sup> But, we also got the included <code>images.py</code> script which illustrated how to read the data and printed cute ascii versions of the characters to the screen. This was enough code for me to modify and figure out how to unroll the <code>numpy</code> arrays for each image, combine them into a single array, and write that to disk. Now, instead of 60,000 28x28-pixel images, I had a 60,000-row matrix with 784 columns/features (the unrolled pixels). </p>
+<p>At this point, I fired up an <a href="http://jupyter.readthedocs.org/en/latest/">IPython notebook</a> to interactively figure out how to chain together the file reads, model fits, cross-validation (with model accuracy visualization!), test data prediction, and submission file creation. The first model I always like to create is the <code>DummyClassifier</code> which basically ignores your training data! Not only is it fast, it's a great way to set a baseline score to ensure you don't make a submission that's <em>worse than random guessing</em>. </p>
+<p><center>
+<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">classifier seems to be working as designed. <a href="https://twitter.com/hashtag/saturdaymorning?src=hash">#saturdaymorning</a> <a href="https://t.co/6zbS5FZqct">pic.twitter.com/6zbS5FZqct</a></p>&mdash; Josh Montague (@jrmontag) <a href="https://twitter.com/jrmontag/status/678314414425018368">December 19, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center> </p>
+<p>With this notebook setup, I experimented with a handful of models to get some scores on the board: random guessing, a linear SVM, and adding scaling into a pipeline. Then, before getting too far into it (like last year!), I started pulling things out into a more programmatic  approach. </p>
+<p>Recognizing that the provided dataset was quite small, I presumed I wouldn't be bottlenecked by memory constraints. Rather, I decided I could move fastest in exploration by parallelizing the CPU-intensive model training steps. Since many of the <code>scikit-learn</code> estimators already have parallelization built in (all hail <code>n_jobs=-1</code> 🙌), I tried to design a workflow that would let me run many experiments in parallel, try not to run them all at exactly the same time, and then let the operating system deal with process management.</p>
+<p>To do this, I used a bash script (<code>launch-processes.bash</code>) that manages things like paths, filenames, process timing (what to start and when), and command-line options. This script is essentially just a wrapper that executes the central Python script (<code>build-model.py</code>) with varying command-line options. The Python script is pretty generic: it reads data, fits a <code>scikit-learn</code> estimator, and either reports on the cross-validation accuracy (through logging and figure generation), or creates a submission file for the leaderboard based on the test data. </p>
+<p>Since the <code>scikit-learn</code> API is very consistently designed, I abstracted away the specific details of the model so I could specify them at run-time (through a command-line argument). Thinking about execution in this way let me use a numeric mapping to specify the models, and define those in a separate module (<code>models.py</code>). By using integers for the mapping, I could write a simple for loop (in bash) over the range of integers (models) I wanted to run. </p>
+<h1>Procedure</h1>
+<p>All of the models are defined <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">in terms of <code>Pipeline</code>s</a>, so they can all be treated like an arbitrary estimator in the Python script: calling <code>.transform()</code>, <code>fit()</code>, or <code>.predict()</code> just works as you'd expect it to. This is an amazing feature of the <code>scikit-learn</code> library that makes it super easy to drop different estimators into an existing workflow. And that is precisely what I did! I worked through these steps, in about this order: </p>
+<ul>
+<li>score default instances of nearly every classifier in the <code>scikit-learn</code> library, with and without feature scaling. This gets you up to <code>expt_23</code> in <code>models.py</code>.</li>
+<li>choose the top three, best-scoring models [k-nearest neighbors, rbf-kernel SVM (with feature scaling), and random forest (with feature scaling)], and score a <code>GridSearchCV</code> over their parameters. This gets you up to <code>expt_34</code> in <code>models.py</code>.<ul>
+<li>typically, my gridsearch process is two-step: first, get the right order of magnitude for the hyperparameters (centering on the default values is a reasonable place to start, since the library devs are very smart), followed by a narrower parameter range around the most successful values from the first round</li>
+</ul>
+</li>
+<li>score a combination of those same top three models (now with their optimized hyperparameters) using <a href="http://scikit-learn.org/stable/modules/ensemble.html">ensemble estimators</a> (bagging, boosting, and voting approaches). This also included some gridsearches to explore variants in the ensemble hyperparameters. This gets you up to <code>expt_44</code> in <code>models.py</code>, including the winning model #42. </li>
+</ul>
+<p>Finally, having exhausted the <code>scikit-learn</code> API, I experimented with:</p>
+<ul>
+<li>using the leaderboard to reverse engineer the actual distribution of test labels, and assign model prediction weights accordingly (in the top-three models)</li>
+<li><a href="http://scikit-learn.org/stable/developers/contributing.html#git-repo">installing the development branch</a> of <code>scikit-learn</code> where there is a forthcoming "multilayer perceptron" neural network classifier, and gridsearching on that model.</li>
+</ul>
+<p>Neither of these approaches improved upon my ensemble approach in #42. So, at this point, I turned to some data engineering.</p>
+<p>After some literature research, it seemed that generating "new data" by means of transforming the original data was a common tactic (recall the mantra that "more data is better"). I found some code that shifted each of the images by one pixel (up, down, left, and right), and so I modified and reimplemented it for my own use (<code>expand-np-arrays.py</code>). The result is a 4x increase in the amount of training data (we now have a 250,000 x 784 matrix). This process takes a while (about 20 minutes) and results in a new, 2-GB <code>numpy</code> array to train a model on.</p>
+<p>Since there were less than 24 hours until the competition deadline (and I figured it would take at least 5x as long to train), I chose not to explore any cross-validation. Instead, I <a href="https://www.youtube.com/watch?v=iCemfI5L-y0">threw a hail mary</a> and went straight to training my best-yet model (#42) on the entire larger dataset to create a leaderboard submission. Training on this data took 16 hours (versus 1.5 with the original data), but did yield a leaderboard accuracy improvement of 0.5% (98.68%). This was my highest accuracy. </p>
+<p><center>
+<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p lang="en" dir="ltr">much better. <a href="https://t.co/56Tn0tHtl9">pic.twitter.com/56Tn0tHtl9</a></p>&mdash; Josh Montague (@jrmontag) <a href="https://twitter.com/jrmontag/status/678674010519920641">December 20, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center></p>
+<h1>Take-aways</h1>
+<p>This classification task was super fun! It was also really interesting to hear how the rest of my team approached the problem. There were a bunch of smart things they incorporated or tried that I didn't: </p>
+<ul>
+<li>dimensionality reduction through PCA or SVD (clearly not all the pixels are necessary!) </li>
+<li>calculating and classifying the images based on their <a href="https://en.wikipedia.org/wiki/Image_moment">moments</a> (clever!) </li>
+<li>manipulations with <a href="http://scikit-image.org/docs/dev/auto_examples/"><code>scikit-image</code></a> (an entire library for image manipulation!)</li>
+</ul>
+<p>Those were all good ideas; I'll aim to keep them in mind for the next similar task. The other things I took away were: </p>
+<ul>
+<li>designing for fast iterations is 👍 </li>
+<li>designing around robust logging is 👍 </li>
+<li>parametrization (decoupling) is 👍 </li>
+<li>simple shell/operating system "parallelization" is much easier than full-on distributed computing (if you don't already have that down, I suppose) <sup id="fnref:legos"><a class="footnote-ref" href="#fn:legos" rel="footnote">3</a></sup> </li>
+<li>I can definitely benefit from a deeper understanding of model selection </li>
+<li>I can definitely benefit from a deeper understanding of feature and data engineering </li>
+<li>since I very intentionally shared this code, next year's competition is going be tough</li>
+</ul>
+<p>That's about it - feel free to poke around in <a href="https://github.com/jrmontag/mnist-sklearn">the actual code, too</a>!</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:3dollars">
+<p>This is an approximation, but I think it's pretty close for spinning up a new Ubuntu EC2 instance, take 30 minutes to install all the system and Python bits (including the <code>virtualenv</code> creation), and then train the winning model (#42, ~1.5 hours). For another ~$30, you could earn an additional 0.5% accuracy by expanding the data (~20 minutes) and training the same model on the larger dataset (~16 hours). &#160;<a class="footnote-backref" href="#fnref:3dollars" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:yan">
+<p>In the repo <code>Makefile</code>, I go out and get the binary data from Yan LeCunn's website, the canonical leaderboard (and history lesson) for MNIST classification. In our competition, these files were just handed to us. &#160;<a class="footnote-backref" href="#fnref:yan" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:legos">
+<p>This is how I typically think, but was also well-articulated recently in <a href="http://www.pixelmonkey.org/2015/11/30/legos">"Lego Blocks for Big Data"</a>.&#160;<a class="footnote-backref" href="#fnref:legos" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+            <a href="#" class="go-top">Go Top</a>
+    <div class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "joshmontaguecom"; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<footer class="footer">
+    <p>&copy; Josh Montague &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
+
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
+
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
+
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-46808845-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+    </script>
+
+</body>
+</html>
