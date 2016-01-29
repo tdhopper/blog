@@ -6,6 +6,8 @@ Tags: python, ML, machine learning, scikit-learn, sklearn, MNIST, digits, superv
 Summary: Python code and an approach to classifying the MNIST handwritten digits dataset with a 98+% accuracy for about $3 in infrastucture costs.  
 
 
+*Update: There are a bunch of handy "next-step" pointers related to this work [in the corresponding reddit thread.](https://www.reddit.com/r/MachineLearning/comments/433pbm/using_pythons_scikitlearn_library_to_achieve_98/)* 
+
 During the holidays, the work demand on my team tends to slow down a little while people are out or traveling for the holidays. For the second year, we held an intra-team team competition in the vein of [Kaggle competitions](https://www.kaggle.com/competitions). As in those competitions, entrants are given training data and labels, along with the test data on which to make predictions. The submitted predictions are scored and posted to the shared leaderboard (though our leaderboard is typically just a Google Spreadsheet).  
 
 This competition was based on one of the canonical machine learning datasets, [the MNIST handwritten digits](https://en.wikipedia.org/wiki/MNIST_database). This data has [a wonderfully rich history](http://yann.lecun.com/exdb/mnist/), and has been a standard benchmark for classification approaches since the 1990s. The data is in the form of 60,000 training images that are grayscale (intensity levels from 0-255) with accompanying labels (integers 0-9), and 10,000 test images of the same format (but without the labels, of course). 
