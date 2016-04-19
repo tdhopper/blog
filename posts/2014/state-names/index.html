@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="lab notebook, thoughts on data">
+    <meta name="description" content="lab notebook, thoughts and notes">
 
         <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
 
-        <title>Creating a Text File of U.S. State Names // lab notebook // thoughts on data</title>
+        <title>Creating a Text File of U.S. State Names // lab notebook // thoughts and notes</title>
+
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
-    <link rel="stylesheet" href="http://joshmontague.com/theme/css/custom.css">
     <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -31,8 +31,10 @@
                 <div class="cover-body">
                     <header class="header">
                         <hgroup>
-                            <h1 class="brand-main"><a href="/">lab notebook</a></h1>
-                            <p class="tagline">thoughts on data</p>
+                            <h1 class="brand-main"><a href="http://joshmontague.com">lab notebook</a></h1>
+                            <p class="tagline">thoughts and notes</p>
+                                <p class="links"><a href="http://joshmontague.com/pages/about">About</a></p>
+                                <p class="links"><a href="http://joshmontague.com/pages/talks">Talks</a></p>
                                 <p class="social">
                                     <a href="https://github.com/jrmontag">
                                         <i class="fa fa-github fa-3x"></i>
@@ -43,10 +45,7 @@
                                     <a href="https://linkedin.com/in/joshuamontague">
                                         <i class="fa fa-linkedin fa-3x"></i>
                                     </a>
-                                    <a href="/feeds/all.rss.xml">
-                                        <i class="fa fa-rss fa-3x"></i>
-                                    </a>
-                                <p>
+                                </p>
                         </hgroup>
                     </header>
                 </div>
@@ -69,42 +68,42 @@
 <p><img alt="Wikipedia table edit button" src="http://joshmontague.com/images/state-table.jpg" title="Yes, this will definitely work." /></p>
 <p>... and clicked through that to observe just the table source. Now this we can work with! </p>
 <p>I simply copy/pasted this plain text into a file locally (say, <code>states-table.txt</code>). Then, had a look:</p>
-<div class="highlight"><pre><span class="nv">$ </span>head -n30 states-table.txt 
+<div class="highlight"><pre><span></span>$ head -n30 states-table.txt 
 <span class="o">==</span><span class="nv">States</span><span class="o">==</span>
-<span class="o">{</span>| <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;wikitable sortable plainrowheaders&quot;</span> <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;text-align: right;&quot;</span>
-|+ States of the United States
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|State
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>1%|<span class="o">[[</span>List of U.S. state abbreviations|Abbr.<span class="o">]]</span>
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>8%|<span class="o">[[</span>Capital city|Capital<span class="o">]]</span>
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Largest city<span class="o">{{</span><span class="c">#tag:ref|The largest city is the city in a state with the largest population in the [[city proper]]; [[metropolitan area]]s are not considered in this number.|group=upper-alpha|name=a}}&lt;ref name=&quot;State and Local Government Finances and Employment&quot;&gt;{{cite web|url=http://www.census.gov/compendia/statab/2012/tables/12s0448.pdf|title=State and Local Government Finances and Employment|year=2012|publisher=[[United States Census Bureau]]|pages=284|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>11% data-sort-type<span class="o">=</span><span class="s2">&quot;date&quot;</span>|Statehood
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span><span class="s2">&quot;12%&quot;</span>|Population&lt;br&gt;<span class="o">(</span>2013 est<span class="o">)</span>&lt;ref <span class="nv">name</span><span class="o">=</span>PopEstUS&gt;<span class="o">{{</span>cite web|url<span class="o">=</span>http://www.census.gov/popest/data/state/totals/2013/tables/NST-EST2013-01.xls|title<span class="o">=</span>Table 1. Annual Estimates of the Population <span class="k">for </span>the United States, Regions, States, and Puerto Rico: April 1, 2010 to July 1, 2013|format<span class="o">=[[</span>Microsoft Excel<span class="o">]]</span>|work<span class="o">=</span>2013 Population Estimates|publisher<span class="o">=[[</span>United States Census Bureau<span class="o">]]</span>, Population Division|date<span class="o">=</span>December 2013|accessdate<span class="o">=</span>January 12, 2014<span class="o">}}</span>&lt;/ref&gt;
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Total area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">){{</span><span class="c">#tag:ref|Area figures are rounded to the nearest whole number.|group=upper-alpha|name=b}}&lt;ref name=&quot;2010 Census of Population and Housing&quot;&gt;{{cite web|url=http://www.census.gov/prod/cen2010/cph-2-1.pdf|title=2010 Census of Population and Housing|date=September 2012|publisher=[[United States Census Bureau]]|pages=41|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Land area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">)</span>&lt;ref <span class="nv">group</span><span class="o">=</span>upper-alpha <span class="nv">name</span><span class="o">=</span>b /&gt;&lt;ref <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;2010 Census of Population and Housing&quot;</span> /&gt;
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%|Water area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">)</span>&lt;ref <span class="nv">group</span><span class="o">=</span>upper-alpha <span class="nv">name</span><span class="o">=</span>b /&gt;&lt;ref <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;2010 Census of Population and Housing&quot;</span> /&gt;
-!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>1%|<span class="o">[[</span>List of United States congressional districts|House seat<span class="o">(</span>s<span class="o">)]]</span>
-|-
-!scope<span class="o">=</span><span class="s2">&quot;row&quot;</span>|<span class="o">{{</span>flag|Alabama<span class="o">}}</span>
-|AL
-|<span class="o">[[</span>Montgomery, Alabama|Montgomery<span class="o">]]</span>
-|<span class="o">[[</span>Birmingham, Alabama|Birmingham<span class="o">]]</span>
-|December 14, 1819
-|4,833,722
-|<span class="o">{{</span>Convert|52420|mi2|km2|sigfig<span class="o">=</span>6|abbr<span class="o">=</span>values|sortable<span class="o">=</span>on<span class="o">}}</span>
-|<span class="o">{{</span>Convert|50645|mi2|km2|sigfig<span class="o">=</span>6|abbr<span class="o">=</span>values|sortable<span class="o">=</span>on<span class="o">}}</span>
-|<span class="o">{{</span>Convert|1775|mi2|km2|sigfig<span class="o">=</span>4|abbr<span class="o">=</span>values|sortable<span class="o">=</span>on<span class="o">}}</span>
-|7
-|-
-!scope<span class="o">=</span><span class="s2">&quot;row&quot;</span>|<span class="o">{{</span>flag|Alaska<span class="o">}}</span>
-|AK
-|<span class="o">[[</span>Juneau, Alaska|Juneau<span class="o">]]</span>
-|<span class="o">[[</span>Anchorage, Alaska|Anchorage<span class="o">]]</span>
-|January 3, 1959
+<span class="o">{</span><span class="p">|</span> <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;wikitable sortable plainrowheaders&quot;</span> <span class="nv">style</span><span class="o">=</span><span class="s2">&quot;text-align: right;&quot;</span>
+<span class="p">|</span>+ States of the United States
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%<span class="p">|</span>State
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>1%<span class="p">|</span><span class="o">[[</span>List of U.S. state abbreviations<span class="p">|</span>Abbr.<span class="o">]]</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>8%<span class="p">|</span><span class="o">[[</span>Capital city<span class="p">|</span>Capital<span class="o">]]</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%<span class="p">|</span>Largest city<span class="o">{{</span><span class="c1">#tag:ref|The largest city is the city in a state with the largest population in the [[city proper]]; [[metropolitan area]]s are not considered in this number.|group=upper-alpha|name=a}}&lt;ref name=&quot;State and Local Government Finances and Employment&quot;&gt;{{cite web|url=http://www.census.gov/compendia/statab/2012/tables/12s0448.pdf|title=State and Local Government Finances and Employment|year=2012|publisher=[[United States Census Bureau]]|pages=284|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>11% data-sort-type<span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">|</span>Statehood
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span><span class="s2">&quot;12%&quot;</span><span class="p">|</span>Population&lt;br&gt;<span class="o">(</span><span class="m">2013</span> est<span class="o">)</span>&lt;ref <span class="nv">name</span><span class="o">=</span>PopEstUS&gt;<span class="o">{{</span>cite web<span class="p">|</span><span class="nv">url</span><span class="o">=</span>http://www.census.gov/popest/data/state/totals/2013/tables/NST-EST2013-01.xls<span class="p">|</span><span class="nv">title</span><span class="o">=</span>Table 1. Annual Estimates of the Population <span class="k">for</span> the United States, Regions, States, and Puerto Rico: April 1, <span class="m">2010</span> to July 1, 2013<span class="p">|</span><span class="nv">format</span><span class="o">=[[</span>Microsoft Excel<span class="o">]]</span><span class="p">|</span><span class="nv">work</span><span class="o">=</span><span class="m">2013</span> Population Estimates<span class="p">|</span><span class="nv">publisher</span><span class="o">=[[</span>United States Census Bureau<span class="o">]]</span>, Population Division<span class="p">|</span><span class="nv">date</span><span class="o">=</span>December 2013<span class="p">|</span><span class="nv">accessdate</span><span class="o">=</span>January 12, 2014<span class="o">}}</span>&lt;/ref&gt;
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%<span class="p">|</span>Total area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">){{</span><span class="c1">#tag:ref|Area figures are rounded to the nearest whole number.|group=upper-alpha|name=b}}&lt;ref name=&quot;2010 Census of Population and Housing&quot;&gt;{{cite web|url=http://www.census.gov/prod/cen2010/cph-2-1.pdf|title=2010 Census of Population and Housing|date=September 2012|publisher=[[United States Census Bureau]]|pages=41|type=pdf|accessdate=July 8, 2013}}&lt;/ref&gt;</span>
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%<span class="p">|</span>Land area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">)</span>&lt;ref <span class="nv">group</span><span class="o">=</span>upper-alpha <span class="nv">name</span><span class="o">=</span>b /&gt;&lt;ref <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;2010 Census of Population and Housing&quot;</span> /&gt;
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>12%<span class="p">|</span>Water area in mi&lt;sup&gt;2&lt;/sup&gt; <span class="o">(</span>km&lt;sup&gt;2&lt;/sup&gt;<span class="o">)</span>&lt;ref <span class="nv">group</span><span class="o">=</span>upper-alpha <span class="nv">name</span><span class="o">=</span>b /&gt;&lt;ref <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;2010 Census of Population and Housing&quot;</span> /&gt;
+!scope<span class="o">=</span><span class="s2">&quot;col&quot;</span> <span class="nv">width</span><span class="o">=</span>1%<span class="p">|</span><span class="o">[[</span>List of United States congressional districts<span class="p">|</span>House seat<span class="o">(</span>s<span class="o">)]]</span>
+<span class="p">|</span>-
+!scope<span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">|</span><span class="o">{{</span>flag<span class="p">|</span>Alabama<span class="o">}}</span>
+<span class="p">|</span>AL
+<span class="p">|</span><span class="o">[[</span>Montgomery, Alabama<span class="p">|</span>Montgomery<span class="o">]]</span>
+<span class="p">|</span><span class="o">[[</span>Birmingham, Alabama<span class="p">|</span>Birmingham<span class="o">]]</span>
+<span class="p">|</span>December 14, 1819
+<span class="p">|</span>4,833,722
+<span class="p">|</span><span class="o">{{</span>Convert<span class="p">|</span>52420<span class="p">|</span>mi2<span class="p">|</span>km2<span class="p">|</span><span class="nv">sigfig</span><span class="o">=</span>6<span class="p">|</span><span class="nv">abbr</span><span class="o">=</span>values<span class="p">|</span><span class="nv">sortable</span><span class="o">=</span>on<span class="o">}}</span>
+<span class="p">|</span><span class="o">{{</span>Convert<span class="p">|</span>50645<span class="p">|</span>mi2<span class="p">|</span>km2<span class="p">|</span><span class="nv">sigfig</span><span class="o">=</span>6<span class="p">|</span><span class="nv">abbr</span><span class="o">=</span>values<span class="p">|</span><span class="nv">sortable</span><span class="o">=</span>on<span class="o">}}</span>
+<span class="p">|</span><span class="o">{{</span>Convert<span class="p">|</span>1775<span class="p">|</span>mi2<span class="p">|</span>km2<span class="p">|</span><span class="nv">sigfig</span><span class="o">=</span>4<span class="p">|</span><span class="nv">abbr</span><span class="o">=</span>values<span class="p">|</span><span class="nv">sortable</span><span class="o">=</span>on<span class="o">}}</span>
+<span class="p">|</span>7
+<span class="p">|</span>-
+!scope<span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">|</span><span class="o">{{</span>flag<span class="p">|</span>Alaska<span class="o">}}</span>
+<span class="p">|</span>AK
+<span class="p">|</span><span class="o">[[</span>Juneau, Alaska<span class="p">|</span>Juneau<span class="o">]]</span>
+<span class="p">|</span><span class="o">[[</span>Anchorage, Alaska<span class="p">|</span>Anchorage<span class="o">]]</span>
+<span class="p">|</span>January 3, 1959
 </pre></div>
 
 
 <p>Clearly there's a lot of extra formatting for the other columns, but we can see a couple of the state names, so we can definitely observe some patterns. A simple <code>grep</code> and <code>sed</code> combination get us almost to the finish line:</p>
-<div class="highlight"><pre><span class="nv">$ </span>cat states-table.txt | grep <span class="s2">&quot;flag|&quot;</span> | sed <span class="s1">&#39;s/^.*flag|//;s/}}.*//&#39;</span>
+<div class="highlight"><pre><span></span>$ cat states-table.txt <span class="p">|</span> grep <span class="s2">&quot;flag|&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/^.*flag|//;s/}}.*//&#39;</span>
 Alabama
 Alaska
 Arizona
@@ -114,14 +113,14 @@ Colorado
 Connecticut
 Delaware
 Florida
-Georgia <span class="o">(</span>U.S. state<span class="o">)</span>|name<span class="o">=</span>Georgia
+Georgia <span class="o">(</span>U.S. state<span class="o">)</span><span class="p">|</span><span class="nv">name</span><span class="o">=</span>Georgia
 Hawaii
 ...
 </pre></div>
 
 
 <p>One extra bit of <code>sed</code> formatting (strip anything that's not a letter)... </p>
-<div class="highlight"><pre><span class="nv">$ </span>cat states-table.txt | grep <span class="s2">&quot;flag|&quot;</span> | sed <span class="s1">&#39;s/^.*flag|//;s/}}.*//;s/ [^a-Z].*$//&#39;</span>
+<div class="highlight"><pre><span></span>$ cat states-table.txt <span class="p">|</span> grep <span class="s2">&quot;flag|&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/^.*flag|//;s/}}.*//;s/ [^a-Z].*$//&#39;</span>
 Alabama
 Alaska
 Arizona

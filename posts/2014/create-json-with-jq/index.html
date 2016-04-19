@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="lab notebook, thoughts on data">
+    <meta name="description" content="lab notebook, thoughts and notes">
 
         <link rel="alternate"  href="http://joshmontague.com/feeds/all.atom.xml" type="application/atom+xml" title="lab notebook Full Atom Feed"/>
 
-        <title>From plain text to JSON with jq // lab notebook // thoughts on data</title>
+        <title>From plain text to JSON with jq // lab notebook // thoughts and notes</title>
+
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://joshmontague.com/theme/css/pure.css">
-    <link rel="stylesheet" href="http://joshmontague.com/theme/css/custom.css">
     <link rel="stylesheet" href="http://joshmontague.com/theme/css/pygments.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -31,8 +31,10 @@
                 <div class="cover-body">
                     <header class="header">
                         <hgroup>
-                            <h1 class="brand-main"><a href="/">lab notebook</a></h1>
-                            <p class="tagline">thoughts on data</p>
+                            <h1 class="brand-main"><a href="http://joshmontague.com">lab notebook</a></h1>
+                            <p class="tagline">thoughts and notes</p>
+                                <p class="links"><a href="http://joshmontague.com/pages/about">About</a></p>
+                                <p class="links"><a href="http://joshmontague.com/pages/talks">Talks</a></p>
                                 <p class="social">
                                     <a href="https://github.com/jrmontag">
                                         <i class="fa fa-github fa-3x"></i>
@@ -43,10 +45,7 @@
                                     <a href="https://linkedin.com/in/joshuamontague">
                                         <i class="fa fa-linkedin fa-3x"></i>
                                     </a>
-                                    <a href="/feeds/all.rss.xml">
-                                        <i class="fa fa-rss fa-3x"></i>
-                                    </a>
-                                <p>
+                                </p>
                         </hgroup>
                     </header>
                 </div>
@@ -74,28 +73,28 @@
 <p>I recently <a href="http://support.gnip.com/articles/data-and-rule-management-with-jq.html">wrote on an article</a> for our support site about using <code>jq</code>; a kind of "tips and tricks with <code>jq</code>". This gave me a great opportunity to experiment with something I'd been curious about: can <code>jq</code> be used to <em>create</em> JSON structures?  </p>
 <p>Spoiler alert: the answer is yes! </p>
 <p>You can <a href="http://support.gnip.com/articles/data-and-rule-management-with-jq.html">click over there if you'd like to read the full article</a>, but I'll add the punch line here. With a combination of <code>split</code>, <code>map</code>, the right command-line arguments, and an alias, I now use this regularly:</p>
-<div class="highlight"><pre><span class="err">$</span> <span class="nt">cat</span> <span class="nt">rules</span><span class="nc">.txt</span>     <span class="err">#</span> <span class="nt">tab-separated</span> <span class="nt">columns</span>
-<span class="nt">dog</span> <span class="nt">lang</span><span class="nd">:en</span> <span class="nt">tag</span><span class="nd">:dogs:english</span>
-<span class="nt">cat</span> <span class="nt">sample</span><span class="nd">:10</span>   <span class="nt">tag</span><span class="nd">:cats:0</span><span class="nc">.1</span>
-<span class="nt">from</span><span class="nd">:gnip</span>   <span class="nt">tag</span><span class="nd">:user:gnip</span>
+<div class="highlight"><pre><span></span>$ cat rules.txt     <span class="c1"># tab-separated columns</span>
+dog lang:en tag:dogs:english
+cat sample:10   tag:cats:0.1
+from:gnip   tag:user:gnip
 
-<span class="err">$</span> <span class="nt">jqrules</span> <span class="nt">rules</span><span class="nc">.txt</span>
-<span class="p">{</span>
-  <span class="s2">&quot;rules&quot;</span><span class="o">:</span> <span class="cp">[</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;dog lang:en&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;tag:dogs:english&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;cat sample:10&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;tag:cats:0.1&quot;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;from:gnip&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;tag:user:gnip&quot;</span>
-    <span class="p">}</span>
-  <span class="cp">]</span>
-<span class="p">}</span>
+$ jqrules rules.txt
+<span class="o">{</span>
+  <span class="s2">&quot;rules&quot;</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">&quot;value&quot;</span>: <span class="s2">&quot;dog lang:en&quot;</span>,
+      <span class="s2">&quot;tag&quot;</span>: <span class="s2">&quot;tag:dogs:english&quot;</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">&quot;value&quot;</span>: <span class="s2">&quot;cat sample:10&quot;</span>,
+      <span class="s2">&quot;tag&quot;</span>: <span class="s2">&quot;tag:cats:0.1&quot;</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">&quot;value&quot;</span>: <span class="s2">&quot;from:gnip&quot;</span>,
+      <span class="s2">&quot;tag&quot;</span>: <span class="s2">&quot;tag:user:gnip&quot;</span>
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
 </pre></div>
 
 
