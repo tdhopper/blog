@@ -10,11 +10,19 @@ MINI_BIO = u'I type into colored screens all day. Mostly about data, often in Py
 TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
 
+# themes
 #THEME = 'notmyidea'
 THEME = 'pure-single'
 
+# articles
 ARTICLE_URL= 'posts/{date:%Y}/{slug}/'
 ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}/index.html'
+
+# pages
+PAGE_URL = 'pages/{slug}.html'
+PAGE_SAVE_AS = 'pages/{slug}/index.html'
+DISPLAY_PAGES_ON_MENU = True
+PAGE_PATHS = ['pages']
 
 YEAR_ARCHIVE_SAVE_AS = 'posts/{date:%Y}/index.html'
 
@@ -23,13 +31,15 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
+DISPLAY_CATEGORIES_ON_MENU = True
+
 # Blogroll
 LINKS =  ()
 
 # from pure readme
 COVER_IMG_URL = 'https://db.tt/EZ8f7qwr'
 PROFILE_IMAGE_URL = 'http://2.gravatar.com/avatar/357be3e0935e653ba5cdae493f3dfcaf'
-TAGLINE = 'thoughts on data'
+TAGLINE = 'thoughts and notes'
 
 # social widgets (theme-specific)
 if THEME == 'notmyidea':
@@ -43,7 +53,7 @@ elif THEME == 'pure-single':
             ('github', 'https://github.com/jrmontag')
             , ('twitter-square', 'https://twitter.com/jrmontag')
             , ('linkedin', 'https://linkedin.com/in/joshuamontague')
-            , ('rss', '/feeds/all.rss.xml')
+#            , ('rss', '/feeds/all.rss.xml')
         )
 else:
     SOCIAL = (
