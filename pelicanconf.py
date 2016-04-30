@@ -71,7 +71,8 @@ else:
 # old MB
 #PATH = '/Users/jrm/blog/src/content'
 # MBP
-PATH = '/Users/jmontague/blog/src/content'
+#PATH = '/Users/jmontague/blog/src/content'
+PATH = '/Users/jmontague/side-projects/blog/src/content'
 
 STATIC_PATHS = [ 
                 'extra',
@@ -87,7 +88,7 @@ EXTRA_PATH_METADATA = {
     }
 
 # keep pelican from freaking out over pre-formed html 
-READERS = {"html": None}
+#READERS = {"html": None}
 
 DEFAULT_PAGINATION = 10
 
