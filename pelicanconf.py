@@ -11,10 +11,8 @@ TIMEZONE = 'US/Mountain'
 DEFAULT_LANG = u'en'
 
 # themes
-#THEME = 'notmyidea'
+THEME = 'notmyidea'
 #THEME = 'pure-single'
-THEME = None
-
 # articles
 ARTICLE_URL= 'posts/{date:%Y}/{slug}/'
 ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}/index.html'
