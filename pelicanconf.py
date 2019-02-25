@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Josh Montague'
 SITENAME = u'lab notebook'
-SITEURL = 'http://joshmontague.com'
+SITEURL = 'http://boring-curran-0e670b.netlify.com'
 #SITEURL = 'http://jrmontag.github.io/blog'
 MINI_BIO = u'I type into colored screens all day. Mostly about data, often in Python.'
 TIMEZONE = 'US/Mountain'
