@@ -13,6 +13,7 @@ DEFAULT_LANG = u'en'
 # themes
 #THEME = 'notmyidea'
 #THEME = 'pure-single'
+THEME = None
 
 # articles
 ARTICLE_URL= 'posts/{date:%Y}/{slug}/'
